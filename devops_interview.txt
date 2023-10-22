@@ -1,0 +1,924 @@
+Let's prepare for the devops interview now
+
+===============================
+Linux Interview questions
+
+1. your Ec2 instance is runnning out of disk space what action you will take?
+Ans: check the logs and rotate using roatare command in linux check the cpu utulization and memeory as well.
+zip the logs using tar -czvf message.tar.zip files.
+
+2. what is a bastion host or a gateway? and what role does it play?
+ans:bastion server is a server which act as a door to the internal network and it provide an extra layer of security as well through which can manage all the user at one place
+
+3.multiple ec2 instance are getting terminated in ASG and this is causing issue in application downtime. but there is no issue in ec2 pricing and all quota looks good.
+Ans:there can be disk space issue,memory,process and there can not any issue with ASG and amazon service.
+
+4.create a linux script that will automitically push certain logs to s3 bucket and also script should run at particular time.
+ans:
+
+5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
+ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
+=====================================
+Git need to write all the commands
+
+1. how do you pass message when you make a git commit
+ans: we can use git commit -m "updated file"
+
+2.how to change new machine type and check who made last change to that particular git code. and know about blame in git.
+ans: git blame biken.txt
+
+3.What is a branch protection in github?
+ans:protecting a branch from direct commit by reviewing the change made to other branch and this is no enabled by default in github.
+
+==========================================
+Docker:
+1.how to check logs in docker and filter only last 200 lines
+Ans:docker logs --tail 200 container-name/id
+2.will the docker logs be lost if contianer is restarted or stopped.
+Ans: Logs will be available if container is stopped or restarted but we won't find logs if it got deleted
+3.you encounter a docker iamge of size 2.7gb will this be a cause of concern and how you will tackle this?
+Ans:Bigger images will result in longer built time
+    docker image download or API limit error
+    application will also be bulkier or heavy
+       
+Solution:
+    smaller image base like alpine images
+    Multi-stage Builds Feature when building docker image
+    install only required packages or bianries
+4.What is the difference between docker image and docker layer?
+Ans:docker image a packaged application or a bundle of packaged layers where it contains all the code and dependencies to run an application.
+
+5.Explain CMD and entrypoint in Docker and are these two same?
+ans:CMD Sets default parameters that can be overridden from the Docker command line interface (CLI) while running a docker container while 
+Sets default parameters that cannot be overridden while executing Docker containers with CLI parameters.
+
+FROM nginx:latest
+
+ENTRYPOINT ["nginx"]
+
+
+FROM ubuntu
+ENTRYPOINT ["echo", "Hello"]
+CMD ["Abhinav"]
+
+FROM ubuntu
+ENTRYPOINT ["echo", "Hello World"]
+
+FROM ubuntu
+CMD ["echo", "Hello World"]
+
+
+What are the different components of Docker?
+Docker clinet, docker-daemon, docker-registry,docker-image,docker-swarm.
+
+What are Docker volumes?
+a volume is a persistent storage location that exists outside of the container. Volumes are useful for storing data that needs to persist even if the container is stopped or removed.
+
+VOLUME /var/log 
+VOLUME /my/data 
+
+or we can specify volume while running a docker container
+docker run -v /host/log:/var/log myimage 
+
+
+
+======================================================
+Kubernetes
+
+1.what is kubernetes KOps?
+Ans: Kops is an automation tool through which we can automate and bootstrap kubernetes cluseter
+2.Explain Replicatio controller in K8s.
+Ans: it is one of the component if kubernetes.
+3.What is pv and pvc in kuberntes.
+Ans: done   
+4.a pod can't access a volume what could be the issue.
+Ans: there can be access mode issue or pv type being accessed and ebs can be accessed by one pod and NFS can be by many pods
+5.what is a side car container?
+Ans:Sidecars are not part of the main traffic or API of the primary application. They usually operate asynchronously and are not involved in the public API. This way, they can enhance the main container without modifying its code or image. A common example is a central logging agent
+6.taint and toleration question.
+7.how does scheduler place pods in nodes so quickly.
+Ans:The scheduler finds feasible Nodes for a Pod and then runs a set of functions to score the feasible Nodes, picking a Node with the highest score among the feasible ones to run the Pod. The scheduler then notifies the API server about this decision in a process called Binding.
+==========================================================
+helm
+1.
+
+==========================================================
+Questions realted to ec2 that might be possible to be asked in interview.
+1.What are the type of virtulization do we have on AWS Platform?
+Ans:There are two types of Virtualization hvm and paravirtual and both have their own advantage and disadvantage. in reated to disk I/O or network realted operations.
+
+2.What are the types of root devices?
+Ans EBS, Instance store and what is the defference in these two: instance storage is an attage storage and this is not persistent if any thing happens to the device and EBS is a remote storage SAN or NAS and this is persistent storage
+
+3.What are the type of hypervisor in AWS?
+ans:xen and nitro and nitro is faster hypervisor. and why.
+
+4.how can we recover the lost ec2 key?
+ans:
+
+5. how to check share AMIs?
+ans:we have public private and owned by someone.
+
+6.What is T2/T3 unlimited options?
+ans:T2 and T3 are the credit that has been prealocated to user to use.
+
+==============================================================
+EKS
+how do you automate kuberntes deployement?
+ans:developer---> github---jenkinswill build docker image---> to ECR----> jenkins.helm/kubectl---> kubernetes cluster.
+2.How do you secure kuberntes app?
+Ans:there are two aspects of kubernets Security.
+			application security and DevOpSec cycle security.
+			authorization,scan repo
+			application security: RBAC, ABAC.
+3. How do you cost/performance optimize kubernetes app?
+Ans:Related to the controlplane (not much to improve as it is fixed)
+	workder node number and types
+	Unused CPU/memory allocation
+	we can use cloud wath container insights/kubecost/cloudhealth/krr.
+4.what are the challenges that you have faced in k8s?
+Ans:Kubernetes version upgrade for worker nodes on EKS
+	create/rehydrate AMI
+	keeping application up and running
+	keeping application highly available
+	maintianing Pod distuption budget
+	one click update
+5. How do you scale kubernetes?
+	horizantal Pod autoscaler(HPA)
+	Cluster Utoscaler--- increase nodes
+	cluster Overprovisioning(Real World App)
+	pause conatiner:
+6. how to expose kuberntes cluster to outside world?
+Ans: we can use noteport,loadbalancer,clusterIP
+
+What is the difference between cmd and entrypoint in docker.
+Entrypoint:this instruction cannot be overriden but command can be .
+CMD: Sets default parameters that can be overridden from the Docker command line interface (CLI) while running a docker container. ENTRYPOINT: Sets default parameters that cannot be overridden while executing Docker containers with CLI parameters.
+======================================================
+IAM: iam is universal account and it does not have relies to a region
+	new user won't have any access when created
+	user are granted with access key and secret key id when created
+	we can rotate our password based using custoum policy.
+==========================================================
+S3.
+What is S3?
+Ans:S3 is an object level storage in aWS, it's simple storage service.
+
+2.What is the difference between object storage and block storage?
+Ans:Object storage means we have to override the object whereas block storage continues from the previous state.
+Block storage is fast, and it is often preferred for applications that regularly need to load data from the backend. Object storage is a method for saving large volumes of unstructured data, including sensor data, audio files, logs, video and photo content, webpages, and emails.
+
+3.How much data can i store in Amazon S3?
+Ans:Around 256TB storage.
+
+4.What storage classes does Amazon S3 offers?
+Ans: S3 Standard, S3 Intelligent-Tiering, S3 Standard-IA, and S3 One Zone-IA and storage class is applicalble to object level.
+
+5.Howreliable is Amazon S3?
+Ans: 99.9
+
+6. What is a provisioned Capacity unit(PCU) and when should it use pcu?(150/MB/s)
+Ans: we can have provision unit deal with Amazon s3 so that we can retrive our data at a faster rate
+
+7.S3 is a global service!! Why do i need to select a region while creating S3 bucket?
+Ans:latency,
+
+8. how do decide where to store a data?
+Ans:Depends on where are your customer.
+
+9.What checksus doesAmazon S3 employ to detect data corruption?(MD5 checksums & cyclic redundancy checks)
+
+10.what is versioning?
+Ans: We can version our objects in aws to know what has been changed and this will charge for versioning.
+
+============================================================
+EBS:
+
+1.EBS: EBS provides high-performance block storage that is opti-mized for andom access operations. EBS volumes can deliver up to 64000 IOPS and 1000mb/s of the throughput per volume.
+
+2.persistent: EBS volumes are persistent, which means that the data stored on them is retained even after the instance is terminated. This makes it easy to store and access large amounts of data in the cloud.
+
+3.snapshots: EBS allows you take pont-in-time snaphots for our volumes. snapshots are stored in Amazon Simple Sotrage Services(S3),which pro-vides durability and availability. 
+
+4.Encryption: EBS volumes can be encrypted at rest using AWS Key Management Service (KMS). This provides an additional layer of security for your data.
+
+5.Availability: EBS volumes are designed to be highly available and durable. EBS provides multiple copies of your data within an Availability Zone (AZ), which ensures that your data is always available.
+===============================================================
+EFS:
+Elastic file storage:
+What are the main use cases for using Amazon EFS?
+Ans:Amazon EFS is a serverless, fully elastic file system that provides high levels of durability and availability for your workloads and applications, including big data and analytics, media processing workflows, content management, web serving, and home directories
+
+
+================================================================
+Terraform interview questions
+
+What is a terraform module?
+Ans: A module in a terraform is a set of configuration files within a single directory it can have one or more files.
+There are three types of Modules in terraform:
+1.root module: As the name implies, this module is the root of any configuration. Every Terraform configuration consists of the root module as the main directory that works with the .tf files
+module "vpc" {
+ source  = "spacelift.io/your-organization/vpc-module-name/aws"
+ version = "1.0.0"
+[...]
+2. child module: this is a module in which is being called by a root module and this is a reusable module as well.
+3.published module: Published Modules are modules pushed to a private or public repository. Terraform registry is the primary public repository. It hosts freely-accessible modules that can be used by anyone within their configurations. Terraform will automatically download the necessary modules from the registry when the appropriate source and version are defined in the module block.
+
+
+==========================================================================
+Terraform Import, Tainting Resources and Debugging:
+Terraform Taint: The terraform taint command informs Terraform that a particular object has become degraded or damaged so it will try to create in the next apply face.
+
+Debugging:we can enable debugging in terraform to know more related to error in terraform and we can use env variable.
+example: export TF_LOG=TRACE.  and to store logs as persistent we need to use export TF_LOG_PATH=/tmp/terrafomr.log
+
+
+
+What are the componenets that you have created using terraform?
+Ans: some of the componenets which  i have created using terraform are like s3,ec2,vpc,etc.tmp/
+unset TF_LOG_PATH: this is to unset the error logs.
+
+Terraform Import:Import command is use to import existing infrastructure in a terraform configuration.
+resource "aws_instance" "myvm" {
+ ami           = "unknown"
+ instance_type = "unknown"
+}
+
+terraform import aws_instance.myvm <Instance ID>
+
+
+Data_sources: we can use data to read resources created by other tools or console.
+terraform import: this command is use to import existing resource and syntax is terraform import resource_type.resource_name attribut.
+by above command terraform confg file won't be updated instead the state file will be updated.
+
+Terraform State:
+Introduction to Terraform State:state file in terraform maps the real world infrastructe with the resource definition file.
+
+Purpose of State: is to track real world with current config, and it is use to manage state of infor when deal with team memebers.
+
+rsource dependency in terraform:
+
+Update and Destroy Infrastructure:
+
+Remote State:
+	What is Remote State and State Locking?
+	remote state is a state file where we can keep in remote backend as we use that file is being used by different team memebrs as well as provide security.
+
+Remote Backends with S3:
+Terraform State Commands: terraform state file are not mean to be edited by vi tool instead we can use terraform state command that is listed below.
+list,mv,show,pull,rm.
+
+terraform state show aws_instance.fiannce.
+
+
+
+
+
+
+
+
+2.how can you change or modify the exisiting infrastructe.
+Ans:we can use import command.
+
+3.what is mean by terraform state file.
+Ans: Terraform maintain a state filw which maps the current state of infr with the confirugation. and it is mostly in local machine or we can store in terraform cloud or in s3 bucket as it may contain sensetive confirugation as well.
+
+4.what happens if you lost your terraform state file?
+Ans:Terraform will compare the cloud infra with the expected state file so if we lost the state file too we still can import the actual infa from the cloud using thier provide.
+
+5.What are the major features that terraform have and why it is more popular then other tools?
+Ans: the major features of terraform are like it have many plugins where we can use single file with multiple providers. it uses HCL language and terraform have simple syntax and can can quickly spin the resources using terraform.
+
+6.What is mean by terraform validate?
+Ans: this command will check for the terraform syntax and if there is any error it will thorow.
+
+7.what is mean by lifecycle in terraform?
+ans:init, plan apply 
+
+lifecycle is a nested block that can appear within a resource block. The lifecycle block and its contents are meta-arguments, available for all resource blocks regardless of type. The arguments available within a lifecycle block are create_before_destroy , prevent_destroy , ignore_changes , and replace_triggered_by
+
+8.there are 20 resources in public cloud and can we destroy only 1 resource out of 20 resources.
+Ans:yes we can use destroy_target_resource.
+
+9.Have you evered preserved the key used in terraform.
+Ans: this is a key that we genrally gerated from the aws for the cli access and we can use this key for the use to set in their home directory.
+
+10.what are the different types of modules in terraform?
+ans: root,child and publish module.
+
+11.
+
+
+variable 'bk'{
+region = 'esast-2'
+descrption='wrhoera'
+}
+
+How can we prevent corrupting terraform state file and what are the methods to recover from tate file.
+
+What is terraform workspace?
+
+
+=======================================================================================================
+
+kubernetes interview questions.
+
+Top kubernetes interview by top company.
+
+What is mean by ingress in kubernetes.
+=> By Ingress in kubernetes it is an API object wherein we can use to define routing policy. where an external user can access pod in a cluster.
+
+
+Pod Networking:
+
+CNI: implements pod as well as node networking.
+Ipam: ip address management in kubernetes. but who assigns ips to pod and nodes.
+service networking:kube-proxy implements service networking in a cluster and it run in every node and gets ips address ragne from kubeaip component.
+cluster DNS:kubernetes create subdoiman for svc and keep an entry of the service but it does not keep record of pod but we can make it that as well.
+coredns:
+Ingress: In Kubernetes, an Ingress is an object that allows access to Kubernetes services from outside the Kubernetes cluster.
+===========================================================================================================
+What is the difference between Docker and Kubernetes?
+Ans: Docker is a container runtime engine whereas kuberntes is an orcherstaiont open-source platform where it usesruntime engine to manage it's enviornment.
+
+2.What are the main components of kuberetes?
+Ans: on a broarder level it have two components controle plane and a data plane or a worker node.
+etc,apiser,c-cm,cm,sch, kubelet,kube-proxy,cr.
+
+3.what is the difference between docker swarm and kubernetes?
+Ans:A pod in a k8s is a runtime specification of a container and it is one if the smallest execution unit in kuberntes and pod are ephemeral by nature.
+ubernetes is designed to work with any programming language and framework, while Docker Swarm only works with the Docker Engine API.
+4.What is a namespace in kubernets?
+Ans: namespace in kubs is logically isolating the resources in their own space and it gives one form of security as well.
+
+6. what is the role of kube-proxy?
+the role it is to create networking servcie in a kuberetnts cluster.
+
+========================================
+Linux
+
+how will you change default user id value in linux?
+ans: useradd biken -- to add user in linu, and to change the id range we have to edit the file /etc/login.defs
+
+2.root# rm -rf /tmp/test gives error operation not permitted. Reason?
+ans: touch /tmp/test
+chatter +i /tmp/test---this character attrbute ensure that file or folder would not be deleted even by the root user.
+
+3./etc/hosts/ which RPM is responsible for creating this file.
+ans:we check using rpm -qf /etc/hosts  files which are owned by packages can be cheked using above command.
+
+4.what is the difference betwwen RPM and YUM?
+ans:both are use to manage software in centos/redhat. 
+to check the depindency we can use rpm -qPR hpptd.6.6.7.rpm
+rmp -ivh httpd.1.23.rpm
+
+5. what is the difference between hardlink and softlink.
+Ans:ln /tmp/test /etc/biken
+ll -i /etc/biken ---- the inode value remains the same in the case of harlink.
+ln -s /tmp/test /mnt/biken
+ll -i /mnt/biken
+rm /tmp/test  in this case link will be broken.
+
+6.what is a sticky bit in linux?
+Ans:sticky bit is implemtmed to prevent deletion of any folder and this is only applicable to folder level not in file level.
+chmod +t dir  or chmod 1777 dir
+
+7.how you will check open ports in linux server?
+ans:netstat -tunlp 
+
+8.how you will check open ports in remote server without login.
+Ans: we can use command line utility to check the remote open port. nmap -A server-name/hostip.
+
+9.your site is throwing 500 error how you will start troubleshooting?
+ans:datbase is not responding.
+
+10.how you will start troubleshooting if the site is down?
+Ans:depending on the erro code we have to start.
+
+11.how will you create a disk space if it is 100% occupied?
+ans:we can use df -HT and go inside the directory and use du -sh *.
+
+12.what is sar command in linux and do you and what is the package of sar?
+ans;sar command can be used to see the info of the systme and it's stastical data.
+we have to install utility/package to see it  yum sysstat. and after that restrt and check.
+sar -q.
+
+The sar command is a standard UNIX command used to gather statistical data about the system. With its numerous options, the sar command provides queuing, paging, TTY, and many other statistics. The sar -d option generates real-time disk I/O statistics.
+
+=============================================================================================
+git interview questions:
+git diff-- linux command to check compare the files content.
+.git is a floder which got downloaded when we initilize a git repo. and this ensure to track and contains git functinalty.
+git log-- is to see who made or commit the code.
+git push master origin.
+git remove -v -- this command tells where is the remote refernece.
+git remote add "githuburl" "reponame"
+git clone url---for pulling the code from the repo.
+git clone vs fork: Cloning makes a local copy of a repository, not your own copy. whereas fork will create a copy for you in a remote location.
+Your own copy means that you will be able to contribute changes to your copy of the repository without affecting the original repository
+git branch  biken
+git checkout -b biken
+git merge, git rebase or git cherry-pick.
+git log division-- to check the commit in division branch
+git cherry-pick: cherry-pick can be use when there is one or 2 commit but this is not helpful when we have thousands of commit.
+git merge branchname / git merge mergeExample  when multiple people making a change in the same file in different it will throigh conflict as it will ask which code to commit.
+git rebase branchname==> this will list the commit id at the top.
+know more on git commands 
+
+
+
+================================================================
+sag interview role  questions:
+txt files in dir.
+
+#!/bin/bash
+
+cd biken
+aws s3 cp .  s3://bucketname\ --recursive
+=============================
+useradd admin
+
+git clone giturl.
+
+git checkout giturl
+
+add a text file.
+
+git add textfile
+git commit -m "add textfile"
+
+git checkout giturl
+
+git cherry-pickt id
+
+=================================
+how do you see logs for deployment ###
+kubectl logs deployment biken 
+
+can we add multiple load balancer
+
+==========================================
+shell scripting part1: done with basic
+shell scripting part2:
+df -ht
+free-- to check memory info
+nproc
+
+let's write a shell script to get the node/cpu info of a machine.
+
+#!/bin/bash
+
+###############################
+#Author: Biken
+#Date: 08/14/2023
+# This script output the health of a node.
+set -x #debug mode
+df -h
+free -g
+nproc
+
+to get the list of running process-> ps -ef, ps -ef | grep "amazon", this is to get the list of process
+
+date | echo "This is today date"
+this does not give the time because this date command belongs to stdin not to stdout or stderr
+
+awk command: know little bit about it and the usecase.
+ps -ef | grep amazon | awk -F "" '${print $2}'
+
+set -e: exit the script when there is an error.
+set-o pipefail: when pipe command fail then we can error out as well.
+
+curl command: is use to retrieve the info fromthe internet example of getting the log file.
+curl https:\\biken.com | grep error.
+
+wget actually downloads the files. whereas curl command will look for and error
+find /etc -name biken.txt // this is the format of using find command
+
+let's write a simple if ifelse for loop in linux.
+
+a=10
+b=20
+
+if [ $a gt $b ]
+then
+	echo "bbbbbbb"
+else
+	echo "bbbbbbbb"
+fi
+
+for loop
+for i in {1...200}; do echo $1; done
+
+trap command:know more on this
+===============================================
+shell scripting interview questions.
+write a simple shell script to list all the processes
+#!/bin/bash
+
+ps -ef | awk -F " " '{print $2}'
+
+write a shell script to print only error log from remote
+
+curl google.com | grep error
+
+for i in {1...100}; do
+if ([`expr $i % 3` == 0 ] || [`expr $i % 5` == 0 ]) && [`expr $i % 15` !=0 ];
+then
+	echo $i
+fi;
+done
+
+write a shell script to print "S" in missisipi
+
+x=biken
+
+grep -o "b" <<<"$x" | wc -l
+
+what is crontab in linux and give one example?
+
+how do you open a file in read only mode?
+vi -r biken.txt
+
+what is the dfference between soft and hard link?
+
+what is the difference between break and continue in a loop?
+
+what is the method you use to sort files in linux?
+sort command
+
+how you will manage huge logs in linux when you have multiple apps?
+logrotate
+
+Write a script to report the usage of AWS project?
+configure aws account with awscli using aws configure
+if you want to check aws cli command realted go to aws reference page.
+
+#!/bin/bash
+
+##############################
+#Author: Biken
+#Date:08-15th-2023  8730830223
+#Version: V1
+#This script will send the report to a user
+#################################
+#AWS S3
+#Aws ec2
+#aws lambda
+#aws Iam
+
+###############################
+integrate with a cron tab the same above script.
+================================================
+Github API integration using shell script.
+go through it and try to do it.
+
+================================================
+Ultimate shell script project used by Netflix Live Demo AWS Real-time project.
+================================================
+Permision:
+who assign default permission to files and directories in linux?
+What is Umask in Linux? Umask (short for user file-creation mode mask) is used by UNIX-based systems to set default permissions for newly created files and directories
+
+
+
+
+
+
+
+
+
+=================================================
+Route 53:
+What is route 53?
+=====================================================
+
+VPC with public-private subnet.
+AWS project of implementing a vpc project.
+What is route 53 and how to implement it and use in real project.?
+2 AZ---AZ
+VPC
+S3 gateway 
+public subnet         public sebnet
+NAT gateway   application load balancer    NAT Gateway
+  private subnet               private subnet
+                    Auto scaling group
+	Server                        Server
+                    Security group
+implement this using console as well as terraform.
+steps to implement:
+1.create a VPC with vpc and more option.
+2.create autoscaling group/// autoscaling group can't be created directly so create a launch template.
+3.create bastion host as a single ec2 instance and edit the vpc as it should be in same vpc.
+4.connect to the bastion host  and install simple html page python3 -m http.server 8000
+5.create load balancer with ec2 server as target group, first create atarget group.
+
+==========================================================
+Day-8:
+AWS interview questions:
+1. you have been assigned to design a VPC architecture for a 2 tier application. The application needs to be highly available and scalable. How would you design the VPC architecture?
+
+Ans:
+
+2. your organization has a VPC with multiple subnets. You want to restrict outbound internet access for resources in one subnet, but allow outbound internet access for resources in another subnet. How would you achieve this?
+
+ans:
+
+
+
+===============================================================
+Day-9:
+Aws s3 buckets deep dive:
+S3 is called as globally accessible service.
+Benefits or advantages of s3.
+Availability & durability
+Scalability
+security
+cost
+performance
+
+do practical part later.
+
+====================================================================
+AWS CLI Deep Dive:
+we can only create two access key per account.
+======================================================================
+IAC with CFT aws:
+create ec2 instance using CFT.
+write cloud formation template
+write a yaml file to create ec2 instance in aws
+how does auto scaling manages spinning up instances when there is high traffic and removes instance when there is no traffic.
+========================================================================
+AWS CICD:
+AWS provides a comprehensive set of CI/CD(continous Integration/Continuous Deployment) services that enable developers to automate and streamline their software delivery processes.
+==========================================================================
+AWS codepipeline:
+AWS ci process with simple flask application.
+===========================================================================
+Day-17.
+Day-29: How to crack the AWS Devops jobs.
+Day-19. AWS lambda
+search for lambda in aws console and perform a demo of sinning up.
+Day-20: cost optmization demo with lambda function use by devops engineer
+implementing lambda function to detect unused EBS volume in aws account and notifying to the creator.
+step1: create ec2 instance
+step2: take a snapshot of the ebs
+step3:create lambda function
+note: the default execition time for a lambda is 3s
+step4: do it completely the demo
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+shell scripting basic devops questions
+==================================================================================
+
+Understanding the jenkins pipeline:
+go to this github repor and do the stuff: https://github.com/devopsjourney1/jenkins-101/blob/master/Jenkinsfile
+Zero to Hero:
+
+
+========================================================================================
+kubernetes real time troubleshooting issue and examples.
+kuberneres cluster problems
+kubernetes Debugging & troubleshooting
+1. ImagePullBackoff error=> invalid image/wrong tag
+2.pod in pending state
+3crashLoopBackOf=>
+4.pod is in pending state.
+5.OOM killed=> What is OOM? Types of OOM? How to fix? Challenges? tools?
+		node OOM and container limit quoto set by kubernetes admin.
+6.security is a top most challange in kubernetes
+7.load balancing: There are many ingress controller but production grade load balancer like F5(Big-IP) are not easy to integrate with kubernetes.
+8.obserbility: logs,metric and trace.
+9.What are the some of the challanges with prometheus?
+ans:
+
+10. How do you handle kubernetes security?
+Ans: there are many wasy that we can do some of them are:
+	By default all pod can communicate with any other pod we can stop by using network policy and limit the communication.
+RBAC(Role base access control)
+Use namespaces for multi tenancy
+Set the admission control policies to avoid running the privilages containers.
+Turn on audit loggin.
+
+11. How two containers running in a single pod have single IP address?
+ans: kubernetes makes use or pause containers for shaing networning.
+12. What is service mesh and why do we need it?
+Ans: A service mesh ensures that communication among containerized and often ephemeral application infra service is fast reliable and sercure. The mesh provides critical capabiltes includng service discovery loadn balancing, encrypting.
+
+13. What is a Pod disruption Beudget?
+
+ans: A PDB specifies the number of replicas that an application can tolerate having realtive to how many it is intended to have.
+14. What is a custom controller? Did you build one and how to build one?
+
+Ans: kubernetes ingress controller or service mesh is an custom controller.
+
+15. What is a side car container and when to use it?
+Ans:
+
+16. What is a Pod security policy?
+Ans:
+
+17. what is livenessprobe?
+ans: Liveness probes are used to determine if a container is alive or dead. If a container fails a liveness probe, Kubernetes will kill the container and restart it as per the container's restart policy. Liveness probes are useful for detecting when an application has stopped responding and needs to be restarted.
+
+18. what is a redninessprobe?
+ans: Readiness probes are used to determine if a container is ready to accept traffic. If a container fails a readiness probe, Kubernetes will remove the container from the service endpoints, meaning that no traffic will be routed to that container until it passes the readiness probe. Readiness probes are useful for ensuring that a container is fully initialized before it begins accepting traffic.
+
+19. What is a startuprobe?
+ans:Startup probes are used to determine if a container has started up successfully. Startup probes are similar to readiness probes, but they are used specifically during the startup phase of a container. If a container fails a startup probe, Kubernetes will kill the container and restart it. Startup probes are useful for detecting when an application needs more time to start up than expected.
+
+
+
+
+=======================================================================
+Create kubernets cluster in eks:
+create vpc
+create extra subnet for kubernetes
+create ec2 instance
+create security group for kubernetes
+create IAM role
+creat IAM policies
+attach Roles
+create EKS cluster
+create node group
+
+=================================================================================
+write a simple jenkins pepeline method.
+pepeline {
+	agent {
+	docker {image 'node:16-alpine'}
+}
+
+stages {
+	stage('Test'){
+	steps{
+	sh 'node --version'
+}
+}
+}
+}
+
+======================================================================================
+
+simple nodejs  docker file.
+FROM node:18
+WORKDIR /src/usr/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD ['node', 'server.js']
+
+======================================================================================
+* * * * * sh /path/to/script.sh
+minutes, hours, Dayof month, Month, Weekday.
+
+=========================================================================================
+
+linux reboot process step by step:
+
+1. Step1: Power On and POST: When you power on your machine, it performs a Power-On Self-Test (POST) to ensure all hardware necessary for the system to operate is functioning correctly.
+2.BIOS/UEFI: The BIOS/UEFI (Basic Input/Output System or Unified Extensible Firmware Interface) is then loaded. This low-level software checks the hardware and then scans the system's storage devices for bootable media.
+3.MBR and GRUB: Once a bootable device (like your hard drive) is found, it reads the first 512 bytes known as the Master Boot Record (MBR) or, in newer systems, it uses the GUID Partition Table (GPT). The MBR/GPT contains the bootloader (often GRUB in Linux systems), which is then executed.
+4.Kernel Loading: The GRUB menu allows you to select an operating system (in a dual boot scenario) or different kernel versions. GRUB/GRUB2 then loads the selected Linux kernel into memory.
+5.Initramfs: The bootloader also loads a special filesystem called the initramfs (Initial RAM FileSystem) into memory alongside the kernel. This temporary root filesystem includes the drivers and tools needed to mount the actual root filesystem.
+6.Kernel Initialization: Once loaded, the kernel decompresses and initializes itself, sets up system functions (like hardware interfaces, memory management, process control, etc.), and then extracts the initramfs archive in memory.
+7.Switch Root: The kernel then executes the /init program located in the initramfs, which continues the boot process, typically by locating and mounting the actual root filesystem. The kernel then 'switches' from the initramfs to the newly mounted root filesystem.
+8.Init and Runlevel/Targets: After the root filesystem is mounted, the kernel starts the first process init (or systemd in most modern systems). This process continues the boot process by moving the system into a specific runlevel, which dictates what processes or services to start.
+9.User-Space: Init or systemd starts the necessary user-space processes according to the chosen runlevel.
+10.Login: Finally, a login prompt or graphical user interface (GUI) appears, and the system is ready for user interaction.
+
+
+====================================
+jenkins zero to hero: keys points.
+===================================
+AWS: Elastic load balancer.
+There are three types of AWS load balancer.ALB,NLB,GLWB
+ALB: application load blancer is mostly a lyer 7 and accepts taffic at layer 7 and it is slow as it need to do some sort of routing based on path or route.
+
+NLB: network load balancer is at lyer4 and it does some sort of data packets and divide the data into chunk and it is faster and it uses sticky session/bit.
+
+GWLB: this is mainly used in firewall,vpn and some other virtual appliances(vpn or any other type of appliances)
+======================================
+write a simple shell script to monitor docker containers.
+#!/bin/bash
+
+
+containers=$(docker ps -a)
+ 
+for continaer in $containers; do
+name=$(echo $container | aws '{print $1}')
+
+
+================================================
+#!/bin/bash
+
+# Get the list of all running containers
+CONTAINERS=$(docker ps -a)
+
+# Loop through the list of containers
+for CONTAINER in $CONTAINERS; do
+
+  # Get the name of the container
+  NAME=$(echo $CONTAINER | awk '{print $1}')
+
+  # Get the status of the container
+  STATUS=$(docker inspect --format='{{.State.Running}}' $CONTAINER)
+
+  # Check if the container is running
+  if [ "$STATUS" = "true" ]; then
+    echo "$NAME is running"
+  else
+    echo "$NAME is not running"
+  fi
+
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
