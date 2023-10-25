@@ -15,7 +15,7 @@ Ans:there can be disk space issue,memory,process and there can not any issue wit
 
 4.create a linux script that will automitically push certain logs to s3 bucket and also script should run at particular time.
 ans:
-
+F
 5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
 ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
 =====================================
@@ -36,7 +36,7 @@ Docker:
 Ans:docker logs --tail 200 container-name/id
 2.will the docker logs be lost if contianer is restarted or stopped.
 Ans: Logs will be available if container is stopped or restarted but we won't find logs if it got deleted
-3.you encounter a docker iamge of size 2.7gb will this be a cause of concern and how you will tackle this?
+3.yYou encounter a docker image of size 2.7gb will this be a cause of concern and how you will tackle this?
 Ans:Bigger images will result in longer built time
     docker image download or API limit error
     application will also be bulkier or heavy
@@ -80,6 +80,86 @@ VOLUME /my/data
 or we can specify volume while running a docker container
 docker run -v /host/log:/var/log myimage 
 
+Can we create docker image from a running container?
+Ans:
+
+What is the difference between docker and virtual machine?
+Ans: Docker is a light weight mean to host application and VM is a whole Os which is heavy and requires more cpu,Ram to function properly
+How can you enable a container to start a docker container when host machine is restarted?
+Ans: yeah we can enable to start container when host restared by updating restart policy.
+		docker update --restar=always container_id
+What is docker compose?
+Ans: Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.
+ example: 
+	
+
+ What are different types of Docker network how they are different form one other?
+ Ans: Bridge network, overlay and vlan network:
+	Overlay: Overlay is a network wherein it enables communcation between the containers hosted in different hosts.
+	Bridge: Beidge is a netwrok which enables communication amongs the containers in same host.
+
+
+ What is a docker image vs docker container?
+ Ans: Docker image basically is a package of code where it is mean to run a container later.
+
+ What do you understand by docker volume and why they are used for data persistent?
+ Ans: 
+
+ HOw do you torubleshoot container no starting?
+ Ans: Docker logs will be the first point, docker inspect,docker events, 
+
+ how to secure docker contianers?
+ Ans: The best wasy to protect containers are we should never run docker as root user and scan the images and use ssl singed dockr images.
+
+ Docker multi stage built creation explanation.
+ Ans: 
+
+ HOw do you deploy canary deployment using docker?
+ Ans:
+
+ What command can you run to export a docker image as an archive?
+ Ans: 
+
+ how to mount volume in docker?
+ Ans: we can mount volumes in docker at the runtime 
+ Basically, there are 3 types of mounts which you can use in your Docker container viz. Volumes, Bind mount and tmpfs mounts.
+
+	Volumes:
+	bind Mount:
+	Tmpfs: 
+
+How do you exec a command inside a container?
+ Ans: docker exec container_id ls
+
+ How can you create a docker image froma a running container?
+ Ans: yes we can create image from a running container.
+	now let's modify the previous docker conatiner running and update a new indx.html file.
+index.html is the file that in the current path.
+
+docker cp index.html image_name:/usr/share/nginx/index.html
+
+docker commit image_name    or we can also give here itself  "docker commit image_name new_image_name 
+
+docker tag image_id new_image_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ======================================================
@@ -103,6 +183,38 @@ helm
 1.
 
 ==========================================================
+AWS Interview  questions:
+What is durability,Reliability,availability?
+Ans: Durability is how safe the data is from being lost, availability is how much efficient the service is to operate and reliabliity is how consistent the service is to use.
+
+Can we have multiple inernet gateway for single vpc?
+Ans: No, why it is no.
+
+What is an internet gateway?
+Ans: IgW allows both inbound and outbound access to the internet whereas the NAT Gateway only allows outbound access. Thus, IgW allows instances with public IPs to access the internet whereas NAT Gateway allows instances with private IPs to access internet.
+
+what is vpc peering?
+Ans: enabling the connection between two vpc in either way and vpc peering cannot be done in different regions
+
+what is a NAT instance?
+Ans: A NAT instance provides network address translation (NAT). You can use a NAT instance to allow resources in a private subnet to communicate with destinations outside the virtual private cloud (VPC), such as the internet or an on-premises network.
+and nat instance is owned managed resource and it can have both public and private ips.
+
+What is NAT Gateway?
+Ans: NAT gateway is use to translate private ips to different address to communicate to outside world or pubic internet. it uese pvc firewall for security purpose.
+
+What are three services available on Route 53?
+Ans: DNS registration, health check and routing.
+
+Does Route 53 Do load balancing?
+Ans: yes route53 does global server load blancing base on the user geo location region.
+
+
+
+
+
+
+
 Questions realted to ec2 that might be possible to be asked in interview.
 1.What are the type of virtulization do we have on AWS Platform?
 Ans:There are two types of Virtualization hvm and paravirtual and both have their own advantage and disadvantage. in reated to disk I/O or network realted operations.
