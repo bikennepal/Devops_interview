@@ -15,7 +15,7 @@ Ans:there can be disk space issue,memory,process and there can not any issue wit
 
 4.create a linux script that will automitically push certain logs to s3 bucket and also script should run at particular time.
 ans:
-F
+
 5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
 ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
 =====================================
@@ -28,15 +28,15 @@ ans: we can use git commit -m "updated file"
 ans: git blame biken.txt
 
 3.What is a branch protection in github?
-ans:protecting a branch from direct commit by reviewing the change made to other branch and this is no enabled by default in github.
+ans:protecting a branch from direct commit by reviewing the change made to other branch and this is not enabled by default in github.
 
 ==========================================
 Docker:
 1.how to check logs in docker and filter only last 200 lines
 Ans:docker logs --tail 200 container-name/id
 2.will the docker logs be lost if contianer is restarted or stopped.
-Ans: Logs will be available if container is stopped or restarted but we won't find logs if it got deleted
-3.yYou encounter a docker image of size 2.7gb will this be a cause of concern and how you will tackle this?
+Ans: Logs will be lost if container is stopped or restarted but we won't find logs if it got deleted.
+3.You encounter a docker image of size 2.7gb will this be a cause of concern and how you will tackle this?
 Ans:Bigger images will result in longer built time
     docker image download or API limit error
     application will also be bulkier or heavy
@@ -54,7 +54,15 @@ Sets default parameters that cannot be overridden while executing Docker contain
 
 FROM nginx:latest
 
-ENTRYPOINT ["nginx"]
+ENTRYPOINT ["echo", "Biken"]
+
+The above entrypoint cannot be overriden and if we try to override it won't work
+
+docker build -t hell-biken
+docker run hello-biken biken
+Biken biken
+
+
 
 
 FROM ubuntu
@@ -78,10 +86,7 @@ VOLUME /var/log
 VOLUME /my/data 
 
 or we can specify volume while running a docker container
-docker run -v /host/log:/var/log myimage 
-
-Can we create docker image from a running container?
-Ans:
+docker run -v /host/log:/var/log myimage  this will be managed by docker-engine itself and this type is of Volume.
 
 What is the difference between docker and virtual machine?
 Ans: Docker is a light weight mean to host application and VM is a whole Os which is heavy and requires more cpu,Ram to function properly
@@ -97,13 +102,14 @@ Ans: Compose is a tool for defining and running multi-container Docker applicati
  Ans: Bridge network, overlay and vlan network:
 	Overlay: Overlay is a network wherein it enables communcation between the containers hosted in different hosts.
 	Bridge: Beidge is a netwrok which enables communication amongs the containers in same host.
-
+	vlan: Macvlan networks allow containers to connect directly to the physical host network. This makes them ideal for applications that need to be able to access the physical host network.
+	
 
  What is a docker image vs docker container?
  Ans: Docker image basically is a package of code where it is mean to run a container later.
 
  What do you understand by docker volume and why they are used for data persistent?
- Ans: 
+ Ans: dokcer volume are used to persist data when container are restarted or stopped
 
  HOw do you torubleshoot container no starting?
  Ans: Docker logs will be the first point, docker inspect,docker events, 
@@ -118,7 +124,8 @@ Ans: Compose is a tool for defining and running multi-container Docker applicati
  Ans:
 
  What command can you run to export a docker image as an archive?
- Ans: 
+ Ans: docker export red_panda > latest.tar
+	docker export --output="latest.tar" red_panda
 
  how to mount volume in docker?
  Ans: we can mount volumes in docker at the runtime 
@@ -143,6 +150,28 @@ docker commit image_name    or we can also give here itself  "docker commit imag
 docker tag image_id new_image_name
 
 
+## Make your own docker app of django and deploy using docker.
+Know how Django app works and it's struture.
+
+===================================================
+
+Multistage docker build.
+
+multistage & Distroless
+Try to creata simple App 
+
+
+==========================================
+Docker Volumes and Bind mount:
+Know the bind and volume difference and try to know docker command to create volume.
+
+===========================================
+Docker Network:
+
+difference between bridge overlay and host network in docker.
+
+
+===============================================
 
 
 
@@ -209,6 +238,57 @@ Ans: DNS registration, health check and routing.
 Does Route 53 Do load balancing?
 Ans: yes route53 does global server load blancing base on the user geo location region.
 
+What is A,Cname,AAA records and how they are different?
+Ans: An A record points a domain name to an IPv4 address, which is an older type of IP address.
+	An AAAA record points a domain name to an IPv6 address, which is a newer type of IP address that allows for more unique addresses
+	A CNAME record points a hostname to another hostname or FQDN (Fully Qualified Domain Name), which is the complete domain name for a specific computer or host.
+	if any confusion check here: https://www.linkedin.com/pulse/dns-records-demystified-understanding-aaaa-cname-mohamed-abdul-hameed/
+
+How can we add a load balancer to Route 53?
+Ans: we can follow usual steps to route trffic in a load balancer.
+
+Does Amazon Route 53 support NS records?
+Ans: Yes, Amazon Route 53 supports Name Service (NS) records.
+
+How we can add Cname to Route 53?
+Ans: A CNAME record cannot be created for the Parent,or Apex domains. An alias record can be used with Route 53 to point the parent domain to other supported alias targets.
+
+What are the componenets of VPC?
+
+Ans: The componenets of VPC are: internetgateway, route table, subnets, cidr, Natgateway, loadbalancer, Nat instance, NACL is at subnet loadbalancer, sroute if through loadbalancer, and security group, vpc flow logs to chekc the user reauets.
+
+What is security group, NACL  and where it is applicable?
+ANs: By default AWS will not accept any traffic. 
+	Security group is at instance level.
+	AWS doesnot allow port 25 as this is use for mailing activity.
+
+	just run simple python app:  python3 -m http.server 9000
+
+===============================================================
+Route53:
+do some projects refering aws route53 documentation.
+
+======================================================================
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+=========================================================================
+Load balancer interview qiestions:
 
 
 
@@ -465,6 +545,8 @@ Ans: namespace in kubs is logically isolating the resources in their own space a
 
 6. what is the role of kube-proxy?
 the role it is to create networking servcie in a kuberetnts cluster.
+
+
 
 ========================================
 Linux
