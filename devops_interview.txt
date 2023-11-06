@@ -18,6 +18,36 @@ ans:
 
 5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
 ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
+6. how can we list all the users in a group in linux.
+Ans:we can use group groupname. or getent group groupname
+
+7.what is AWK command in linux?
+ans: this is a powerrful textprocessing command in linux.
+8.how to connect to ec2 instance if we lost the key?
+Ans: Try this out and understand the real use case.
+9.What are the types of EBS we have?
+Ans: general purpose gp3,gp2,Iops and magnetic types ebs we have.
+10. What is the max iops we can get in aws ebs?
+Ans: For standard volumes, the maximum size is 16 TiB. For Provisioned IOPS (IO1) and General Purpose (GP2) volumes, the maximum size is 64 TiB.
+11.What is the difference between values and snapshots?
+Ans: Value is the data of ec2 instance and snapshot is the the backup of the value. and it is layerby layer backup.
+
+12. Can we attach snapshots with ec2 instance? if yes how and if no why?
+Ans: You can't use snapshots to launch a new instance, but you can use them to replace volumes on an existing instance.
+13.What is the difference between ebs efs and s3 storage?
+Ans: 
+14.Give me some example where vertical scaling is apporopriate then horizantal scaling.
+Ans: When you have a small, predictable workload, When you need to quickly improve performance:
+15.Name three aws services where we can run kubernetes.
+Ans: EKS,ECS and EKS anywere.
+16.What are cloud computing deployment models?
+Ans: Cloud computing deployment models are the different ways that cloud computing resources can be delivered to and used by customers. There are four main deployment models:
+	public,private,cumminity,hybrid
+17.What is a shared responsible model?
+Ans:In cloud computing, a shared responsibility model is a security framework that outlines the security responsibilities of both the cloud provider and the cloud customer. The model is based on the principle that both parties have shared responsibility for securing the cloud environment.
+
+18.
+
 =====================================
 Git need to write all the commands
 
@@ -205,6 +235,12 @@ ans: git blame biken.txt
 
 3.What is a branch protection in github?
 ans:protecting a branch from direct commit by reviewing the change made to other branch and this is no enabled by default in github.
+4. What is a branch in git?
+Ans: A branch is a new or a seprate repositort under the main branch which seprates main code with latest code thas has been push to the subbranch.
+5.What is tag in git and why it is used?
+Ans:TBD with example
+6.
+
 
 ==========================================
 Docker:
@@ -990,6 +1026,9 @@ linux reboot process step by step:
 
 ====================================
 jenkins zero to hero: keys points.
+Jenkins interview questions:
+What is master slave in jenkins?
+Ans: 
 ===================================
 AWS: Elastic load balancer.
 There are three types of AWS load balancer.ALB,NLB,GLWB
@@ -1134,6 +1173,10 @@ Ans:Sidecars are not part of the main traffic or API of the primary application.
 6.taint and toleration question.
 7.how does scheduler place pods in nodes so quickly.
 Ans:The scheduler finds feasible Nodes for a Pod and then runs a set of functions to score the feasible Nodes, picking a Node with the highest score among the feasible ones to run the Pod. The scheduler then notifies the API server about this decision in a process called Binding.
+8. What is the difference between deployment and stateful sts in kubernetes.
+Ans:have a check by creating it.
+
+
 ==========================================================
 helm
 1.
