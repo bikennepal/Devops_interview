@@ -823,7 +823,7 @@ steps to implement:
 3.create bastion host as a single ec2 instance and edit the vpc as it should be in same vpc.
 4.connect to the bastion host  and install simple html page python3 -m http.server 8000
 5.create load balancer with ec2 server as target group, first create atarget group.
-6.
+6.biken
 
 ==========================================================
 Day-8:
