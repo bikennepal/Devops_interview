@@ -224,6 +224,65 @@ ans:
 
 5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
 ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
+6.What is the difference between sepcial permission and access control list(ACL)?
+Ans: special permission is like SUID,GUID and Sticky bit:
+soS, 4,2,1 t or T for sticky bit.
+ACL is more like a redefine or fine-granied level of permission access for a file or a directory and this is applicabel at user or group level and to make this applicable we need to have ACL enable at partition level.
+like getfacl and setfacl.
+7.what is the difference between s and S in special permission?
+ans: s(lowercase) when s appears in the execute permission field. it indicates that the set user ID(suid) or set group(SGID) permission is set. The SUID permission allows a user to execute a file with the permissions of the files owner.likewise the SGID permission allows a user to exeucte a file witht he permisison of the files' group.
+
+example: rwsr-xr-x indicates that the SUID bit is set for the owner.
+
+S(uppercase): when 'S' appears in the execute permission filed. it indicates that the corresponding execute permission is not set and the SUID or SGID permission is not active.
+example rw-rw-r would be rwSr-Sr-- if the SUID bit is set for the owner but execute permission is not set.
+8.What is the difference between t and T?
+Ans: When t appears in the excute permission field for others on a directory. it indicates that the sticky bit is set. The sticky bit on directory is a permission that restricts the deletion of files within the directory to only the file's owner, the directorys owner or the root user.
+example: drwxr-xr indicates that the sticky bit is set for others.
+same as capital S set but not given execute permission.
+9.what is suid ?can you give me an example? how to set suid?
+ans:Change user UID on execution. if SETUID bit is set when the file will be executed by a normal user, the process will have same rights as the owner of the file being executed. BAsically the owner of the command will be root user but still normal user can execute it.
+example: ls -l/bin/ping 
+		chmod u-s /bin/ping 
+		chmod 4766 /bin/ping 
+
+10.what is sgid ?can you give me an example? how to set sgid?
+ans: SGID -- Set the group ID used on executable files to allow the file to be run as if logged into group (like suid but used file grp permission)
+ans: mkdir /amazon
+	chgrp biken amazon
+	ls -ld amazon
+	chmod 2766 amazon
+	cd /amazon
+	touch vpc
+	ls -l 
+
+	example: chgrp lambda amazon // changing the group of the dir amazon
+			chmod 2766 amazon // setting the sgid for the dir amazon
+			and if you create any file under amazon it will take group as lambda.
+11. what is stickybit ?can you give me an example? how to set stickybit?
+Ans: Sticky bit is a special file or directory permission and only the owner or root user can delete that file or directory.
+	Example: mkdir compute
+				chmod 1766 compute
+				touch ec2.txt
+				ls -ld compute
+				su - splunk 
+				cd compute
+				rem ec2.txt
+
+12.How to enable ACL on a partition?
+Ans: mount -o acl /dev/sdb1 /youtube
+		getfacl to check the acl is applied in a directory or not
+
+13.how to apply and Acl on a file or a directory?
+Ans: setfacl option argument file or dir
+		setfacl -m u:manish:rx /dir
+
+
+
+
+
+
+
 =====================================
 Git need to write all the commands
 
@@ -315,6 +374,8 @@ helm
 1.
 
 ==========================================================
+AWS-interview Questions.
+
 Questions realted to ec2 that might be possible to be asked in interview.
 1.What are the type of virtulization do we have on AWS Platform?
 Ans:There are two types of Virtualization hvm and paravirtual and both have their own advantage and disadvantage. in reated to disk I/O or network realted operations.
@@ -333,6 +394,17 @@ ans:we have public private and owned by someone.
 
 6.What is T2/T3 unlimited options?
 ans:T2 and T3 are the credit that has been prealocated to user to use.
+
+======================================
+Amazon VPC:
+1.list The componenets of use to build vpc?
+Ans: Subnet,internetgateway,route table,cidr.
+2.how many vpc can we create in a vpc?
+Ans: it's depend on many factors like vpc size region etc defaul is 20 per vpc.
+3.can we connect two vpc in different regions?
+Ans: Yes, you can connect two VPCs in different regions. This is known as an inter-region VPC peering connection
+4.What is vpc peering and how you will implement it and can you please give a demo?
+Ans: 
 
 ==============================================================
 EKS
@@ -1569,6 +1641,8 @@ we have to install utility/package to see it  yum sysstat. and after that restrt
 sar -q.
 
 The sar command is a standard UNIX command used to gather statistical data about the system. With its numerous options, the sar command provides queuing, paging, TTY, and many other statistics. The sar -d option generates real-time disk I/O statistics.
+
+13.
 
 =============================================================================================
 git interview questions:
