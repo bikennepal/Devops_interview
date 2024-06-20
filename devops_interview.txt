@@ -144,17 +144,45 @@ VOLUME /my/data
 or we can specify volume while running a docker container
 docker run -v /host/log:/var/log myimage  this will be managed by docker-engine itself and this type is of Volume.
 
+docker volume create my-volume
+docker volume create --name shared-data
+we must mount the created volume inside the container
+docker run -it --name my-container -v my-volume:/data ubuntu:latest
+
+* can we use same volume with multiple containers
+Ans: There are two ways to share a single volume with multiple Docker containers:
+	Using the volumes-from flag: This flag allows you to mount the volumes of one container to another container. For example, to mount the volumes of the container named container1 to the container named container2, you would run the following command:
+	docker run -it --name container2 -v my-volume:/data ubuntu
+
+
 What is the difference between docker and virtual machine?
 Ans: Docker is a light weight mean to host application and VM is a whole Os which is heavy and requires more cpu,Ram to function properly
 How can you enable a container to start a docker container when host machine is restarted?
 Ans: yeah we can enable to start container when host restared by updating restart policy.
 		docker update --restar=always container_id
+	To create a systemd unit file for a docker container, you would create a file with the .service extension in the /etc/systemd/system directory. The file would contain the following information:
+	[Unit]
+Description=My Docker Container
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker start my-container
+ExecStop=/usr/bin/docker stop my-container
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl enable my-container.service
+sudo systemctl start my-container.service
+
 What is docker compose?
 Ans: Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.
  example: 
 	
 
  What are different types of Docker network how they are different form one other?
+docker run --network my-network my-image // This is how we can run contaienr in different network
  Ans: Bridge network, overlay and vlan network:
 	Overlay: Overlay is a network wherein it enables communcation between the containers hosted in different hosts.
 	Bridge: Beidge is a netwrok which enables communication amongs the containers in same host.
@@ -169,6 +197,7 @@ Ans: Compose is a tool for defining and running multi-container Docker applicati
 
  HOw do you torubleshoot container no starting?
  Ans: Docker logs will be the first point, docker inspect,docker events, 
+	docker logs container_id or container_name, docker inspect --type=container my_container 
 
  how to secure docker contianers?
  Ans: The best wasy to protect containers are we should never run docker as root user and scan the images and use ssl singed dockr images.
@@ -182,6 +211,7 @@ Ans: Compose is a tool for defining and running multi-container Docker applicati
  What command can you run to export a docker image as an archive?
  Ans: docker export red_panda > latest.tar
 	docker export --output="latest.tar" red_panda
+	docker export red_panda > latest.tar
 
  how to mount volume in docker?
  Ans: we can mount volumes in docker at the runtime 
@@ -194,7 +224,7 @@ Ans: Compose is a tool for defining and running multi-container Docker applicati
 How do you exec a command inside a container?
  Ans: docker exec container_id ls
 
- How can you create a docker image froma a running container?
+ How can you create a docker image from a running container?
  Ans: yes we can create image from a running container.
 	now let's modify the previous docker conatiner running and update a new indx.html file.
 index.html is the file that in the current path.
@@ -357,7 +387,8 @@ ENTRYPOINT ["nginx"]
 FROM ubuntu
 ENTRYPOINT ["echo", "Hello"]
 CMD ["Abhinav"]
-
+	here while running the docker conatiner we can override the cmd argument
+		docker run -it image biken
 FROM ubuntu
 ENTRYPOINT ["echo", "Hello World"]
 
@@ -380,12 +411,26 @@ docker run -v /host/log:/var/log myimage
 
 
 ======================================================
+* Can you please explain kubernetes architecture?
+Ans: Kubernetes, or K8s, is an open-source container orchestration platform that uses a master-worker model to manage containerized applications. The master node, also known as the control plane, manages the worker nodes, which can be physical servers or virtual machines. Containers are deployed and executed in the worker nodes, which are encapsulated in pods
+	Monitors the cluster
+The kube-controller-manager uses the API server to watch the cluster's shared state and makes changes to move the current state closer to the desired state.
+Runs controllers
+The kube-controller-manager contains multiple controllers that work together to maintain the desired state of the cluster. These controllers include:
+Node Controller: Notifies and responds when nodes go down. It also verifies the node's health and checks with the cloud provider's API if the node has been deactivated, deleted, or terminated. If the node has been deleted, the controller deletes the Node object from the cluster.
+Replication Controller: Maintains the correct number of pods for each replication controller object.
+Endpoints Controller: Populates the Endpoints object, which joins services and pods.
+Other responsibilities
+The kube-controller-manager is also responsible for creating new Pods, ServiceAccounts, and EndPoints.
+Kube-apiserver:Kube-apiserver is responsible for authenticating , validating requests, retrieving and Updating data in ETCD key-value store. In fact kube-apiserver is the only component that interacts directly to the etcd datastore.
+
+ETCD: 
 Kubernetes
 
 1.what is kubernetes KOps?
 Ans: Kops is an automation tool through which we can automate and bootstrap kubernetes cluseter
-2.Explain Replicatio controller in K8s.
-Ans: it is one of the component if kubernetes.
+2.Explain Replication controller in K8s.
+Ans: it is one of the component in kubernetes.
 3.What is pv and pvc in kuberntes.
 Ans: done   
 4.a pod can't access a volume what could be the issue.
