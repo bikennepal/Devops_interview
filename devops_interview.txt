@@ -20,13 +20,35 @@ ans:
 ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
 6. how can we list all the users in a group in linux.
 Ans:we can use group groupname. or getent group groupname
+7.To create a group in linux
+Ans: sudo groupadd biken
+8.To add user in a group
+Ans: sudo usermod -aG group username
 
-7.what is AWK command in linux?
+
+7.what is AWK command in linux? and how to use it?
 ans: this is a powerrful textprocessing command in linux.
+	example:
+			$cat > employee.txt 
+						ajay manager account 45000
+						sunil clerk account 25000
+						varun manager sales 50000
+						amit manager account 47000
+						tarun peon sales 15000
+						deepak clerk sales 23000
+						sunil peon sales 13000
+						satvik director purchase 80000 
+awk '/manager/ {print}' employee.txt 
+url to know more: https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
+
+
+
 8.how to connect to ec2 instance if we lost the key?
 Ans: Try this out and understand the real use case.
 9.What are the types of EBS we have?
 Ans: general purpose gp3,gp2,Iops and magnetic types ebs we have.
+10. Can we use one ebs volume by multiple instance?
+ans: can shared instances in the same AZ
 10. What is the max iops we can get in aws ebs?
 Ans: For standard volumes, the maximum size is 16 TiB. For Provisioned IOPS (IO1) and General Purpose (GP2) volumes, the maximum size is 64 TiB.
 11.What is the difference between values and snapshots?
@@ -35,7 +57,9 @@ Ans: Value is the data of ec2 instance and snapshot is the the backup of the val
 12. Can we attach snapshots with ec2 instance? if yes how and if no why?
 Ans: You can't use snapshots to launch a new instance, but you can use them to replace volumes on an existing instance.
 13.What is the difference between ebs efs and s3 storage?
-Ans: 
+Ans: https://www.google.com/search?q=What+is+the+difference+between+ebs+efs+and+s3+storage&rlz=1C1GCEA_enIN902IN902&oq=What+is+the+difference+between+ebs+efs+and+s3+storage&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigAdIBBzkxOGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8
+** Can we launch an instance using efs in aws?
+Ans: Yes, you can use Amazon Elastic File System (EFS) to launch an Amazon EC2 instance by creating an EFS file system and mounting it to the instance during launch using the Amazon EFS Quick Create feature. EFS is a serverless, shared file system that can be mounted to multiple EC2 instances and is designed to be a durable and highly available file storage solution
 14.Give me some example where vertical scaling is apporopriate then horizantal scaling.
 Ans: When you have a small, predictable workload, When you need to quickly improve performance:
 15.Name three aws services where we can run kubernetes.
@@ -66,6 +90,8 @@ Docker:
 Ans:docker logs --tail 200 container-name/id
 2.will the docker logs be lost if contianer is restarted or stopped.
 Ans: Logs will be lost if container is stopped or restarted but we won't find logs if it got deleted.
+To persist Docker logs, you can use a logging driver such as json-file or syslog. These drivers will store the logs in a location on the host machine, which will persist even after the container is stopped or restarted.
+You can also use a third-party logging service such as Splunk or Elasticsearch to store Docker logs. These services will collect and store the logs from all of your containers, and provide you with a centralized view of your logs.
 3.You encounter a docker image of size 2.7gb will this be a cause of concern and how you will tackle this?
 Ans:Bigger images will result in longer built time
     docker image download or API limit error
@@ -98,7 +124,7 @@ Biken biken
 FROM ubuntu
 ENTRYPOINT ["echo", "Hello"]
 CMD ["Abhinav"]
-
+if we don't give any name in cmd it will print hello only
 FROM ubuntu
 ENTRYPOINT ["echo", "Hello World"]
 
