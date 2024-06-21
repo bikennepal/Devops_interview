@@ -424,6 +424,15 @@ Other responsibilities
 The kube-controller-manager is also responsible for creating new Pods, ServiceAccounts, and EndPoints.
 Kube-apiserver:Kube-apiserver is responsible for authenticating , validating requests, retrieving and Updating data in ETCD key-value store. In fact kube-apiserver is the only component that interacts directly to the etcd datastore.
 
+Kubelet
+An agent that runs on each worker node to manage and maintain pods. The kubelet communicates with the API server to receive pod definitions, monitors pod health, and starts and stops containers as needed.
+Kube-proxy
+A network proxy that runs on each node to control traffic routing and network connectivity for cluster services.
+
+Kube-scheduler
+Records resource utilization statistics for each computing node, evaluates the cluster's health, and decides where and whether to deploy new containers.
+
+
 ETCD: 
 Kubernetes
 
