@@ -2,6 +2,11 @@ Let's prepare for the devops interview now
 
 ===============================
 Linux Interview questions
+What is the difference between SLA,SLI and SLO?
+=> sla:An agreement between a company and its customers that defines measurable metrics like uptime, responsiveness, and responsibilities. SLAs are used externally to define the company's service. If the SLA is not met, the company may face a penalty, such as a partial refund or additional subscription time.
+slo:An agreement within an SLA that defines a specific metric, such as uptime or response time. SLOs are individual promises made to customers and are measured internally to determine if the SLA is being met
+
+SLI:A specific metric that measures some aspect of the level of service to customers. SLIs are a sub-section of SLOs and are key metrics used to determine if the SLO is being met. The value of the SLI must always meet or exceed the value determined by the SLO.
 
 1. your Ec2 instance is runnning out of disk space what action you will take?
 Ans: check the logs and rotate using roatare command in linux check the cpu utulization and memeory as well.
