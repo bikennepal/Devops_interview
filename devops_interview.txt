@@ -2202,7 +2202,7 @@ for CONTAINER in $CONTAINERS; do
   fi
 
 done
-
+=================================================
 I have 5 log files under different directores . say for eg abc under /home/dir1 , xyz under home/dir2 . is there a script that i can run from say /home that searchers all these files for string or combination of strings and write to a file
 
 eg search file by timestamp|keyword
@@ -2213,7 +2213,20 @@ do
 	grep "biken" "$i" /file_name >> file.output
 done
 
+========================================================
+write script to display logs of GET response and response time and code from a log file?
 
+Ans: 
+Script to display logs of GET response and response time and code from a log file
+
+Use grep command to filter GET requests from the log file
+
+Use awk command to extract response time and response code from the filtered logs
+
+Format the output using printf command
+
+Example: grep 'GET' logfile | awk '{print $4, $9, $NF}' | printf '%-20s %-10s %-10s '
+grep 'GET' filename | awk '{print $4, $9, $NF}' | printf '%-20s %-10s %-10s'
 
 
 
