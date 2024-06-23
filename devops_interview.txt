@@ -2,6 +2,11 @@ Let's prepare for the devops interview now
 
 ===============================
 SRE Interview questions:
+
+
+What happens when you type in ‘www.cnn.com’ in your browser?
+
+Steps: url to study for quick refresh: https://medium.com/@tech_18484/what-happens-when-you-type-a-url-into-your-browser-38ad7b100f0c
 https://github.com/mxssl/sre-interview-prep-guide
 Linux Interview questions
 Where does dns cache located in linux?
