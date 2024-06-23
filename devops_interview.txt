@@ -2203,6 +2203,16 @@ for CONTAINER in $CONTAINERS; do
 
 done
 
+I have 5 log files under different directores . say for eg abc under /home/dir1 , xyz under home/dir2 . is there a script that i can run from say /home that searchers all these files for string or combination of strings and write to a file
+
+eg search file by timestamp|keyword
+o/p in a file
+
+for i in /dir1 /dir2 /dir3;
+do
+	grep "biken" "$i" /file_name >> file.output
+done
+
 
 
 
