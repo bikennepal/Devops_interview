@@ -2,6 +2,28 @@ Let's prepare for the devops interview now
 
 ===============================
 Linux Interview questions
+Where does dns cache located in linux?
+ans: /var/cache/nsdc/hosts
+
+**swap memory in linux, projects worked on , explain CI/CD , docker, kubernetes
+* What is a swap memory and how can you create swap memory and see swap memory?
+Ans: Swap space in Linux is an extension of physical RAM, offering virtual memory that helps maintain system stability and performance
+swapon -s to see swap space 
+free -m this gives more detail
+
+How to Increase/Decrease Swap Space
+swapon --show 
+Before resizing, disable the swap space with the following syntax:
+	sudo swapoff -v /[swap_path]
+After resizing the swap partition, update the partition table using the following syntax:
+sudo mkswap /[swap_path]
+sudo swapon /[swap_path]
+How to see the cpu info on linux?
+
+
+see here for sre questions:
+https://www.ambitionbox.com/interviews/signzy-technologies-interview-questions/site-reliability-engineer
+
 What is the difference between SLA,SLI and SLO?
 => sla:An agreement between a company and its customers that defines measurable metrics like uptime, responsiveness, and responsibilities. SLAs are used externally to define the company's service. If the SLA is not met, the company may face a penalty, such as a partial refund or additional subscription time.
 slo:An agreement within an SLA that defines a specific metric, such as uptime or response time. SLOs are individual promises made to customers and are measured internally to determine if the SLA is being met
