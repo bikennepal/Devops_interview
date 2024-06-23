@@ -1,6 +1,8 @@
 Let's prepare for the devops interview now
 
 ===============================
+SRE Interview questions:
+https://github.com/mxssl/sre-interview-prep-guide
 Linux Interview questions
 Where does dns cache located in linux?
 ans: /var/cache/nsdc/hosts
