@@ -25,7 +25,7 @@ Before resizing, disable the swap space with the following syntax:
 After resizing the swap partition, update the partition table using the following syntax:
 sudo mkswap /[swap_path]
 sudo swapon /[swap_path]
-How to see the cpu info on linux?
+How to see the cpu info in linux?
 
 
 see here for sre questions:
@@ -1664,8 +1664,18 @@ descrption='wrhoera'
 }
 
 How can we prevent corrupting terraform state file and what are the methods to recover from tate file.
+=> Remote state management
+Store the state file remotely in a service like Amazon S3, Google Cloud Storage, or HashiCorp Consul. This allows multiple team members to access it simultaneously and prevents accidental deletions.
+State locking
+Terraform automatically locks the state file for operations that can write to it, preventing others from acquiring the lock and potentially corrupting the file.
+State file versioning
+Retain previous versions of the state file to roll back to if it gets corrupted.
+Encryption
+Encrypt the state file at rest and in transit to protect sensitive information.
 
 What is terraform workspace?
+Terraform workspaces are a feature of Terraform, an infrastructure as a code (IaC) tool, that allow users to manage multiple infrastructure resources within a single configuration file
+know more here : https://developer.hashicorp.com/terraform/cli/workspaces
 
 
 =======================================================================================================
@@ -1893,7 +1903,10 @@ how do you open a file in read only mode?
 vi -r biken.txt
 
 what is the dfference between soft and hard link?
-
+Each hard linked file is assigned the same Inode value as the original, therefore they reference the same physical file location
+ln  [original filename] [link name]
+A soft link is similar to the file shortcut feature which is used in Windows Operating systems
+ln  -s [original filename] [link name] 
 what is the difference between break and continue in a loop?
 
 what is the method you use to sort files in linux?
@@ -2083,7 +2096,7 @@ Ans: A service mesh ensures that communication among containerized and often eph
 
 13. What is a Pod disruption Beudget?
 
-ans: A PDB specifies the number of replicas that an application can tolerate having realtive to how many it is intended to have.
+ans:  Pod Disruption Budget (PDB) is a Kubernetes resource that limits the number of pods that can be down at once during voluntary disruptions to an application
 14. What is a custom controller? Did you build one and how to build one?
 
 Ans: kubernetes ingress controller or service mesh is an custom controller.
@@ -2148,6 +2161,11 @@ CMD ['node', 'server.js']
 ======================================================================================
 * * * * * sh /path/to/script.sh
 minutes, hours, Dayof month, Month, Weekday.
+
+User cron job
+/var/spool/cron/crontabs/<username>
+System-wide cron job
+/etc/crontab or /etc/cron.d/<filename>
 
 =========================================================================================
 
