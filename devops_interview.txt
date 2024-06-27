@@ -78,7 +78,7 @@ url to know more: https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
 
 
 8.how to connect to ec2 instance if we lost the key?
-Ans: Try this out and understand the real use case.
+Ans: https://stackoverflow.com/questions/49749794/recovering-lost-aws-ec2-key-pairs see here the multiple ways to do so
 9.What are the types of EBS we have?
 Ans: general purpose gp3,gp2,Iops and magnetic types ebs we have.
 10. Can we use one ebs volume by multiple instance?
