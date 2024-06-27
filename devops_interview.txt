@@ -785,7 +785,8 @@ chmod +t dir  or chmod 1777 dir
 ans:netstat -tunlp 
 
 8.how you will check open ports in remote server without login.
-Ans: we can use command line utility to check the remote open port. nmap -A server-name/hostip.
+Ans: we can use command line utility to check the remote open port. nmap -A server-name/hostip and nmap is use to scan the open ports as well
+sudo nmap -sT -p- 10.10.8.8  This is to scan tcp port and for udp sudo nmap -sU -p- 10.10.8.8
 
 9.your site is throwing 500 error how you will start troubleshooting?
 ans:datbase is not responding.
