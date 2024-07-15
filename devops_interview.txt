@@ -2255,6 +2255,25 @@ Example: grep 'GET' logfile | awk '{print $4, $9, $NF}' | printf '%-20s %-10s %-
 grep 'GET' filename | awk '{print $4, $9, $NF}' | printf '%-20s %-10s %-10s'
 
 
+================================================================
+
+signzy Interview questions:
+How to check outbouned ports in linux?
+Ans: sudo netstat -tunpl
+	ss command
+How to scale node a port in kubernetes?
+Ans: we can use HPA to scale port and node
+What is three archicture pls explain?
+Ans:
+Types of network service in kubernetes?
+Ans
+how to kill process in linux?
+Ans: kill -9 processid
+How to scan open ports in linux?
+Ans: Use the command sudo nmap -n -PN -sT -sU -p- localhost
+
+
+
 
 
 
