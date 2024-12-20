@@ -33,7 +33,7 @@ After resizing the swap partition, update the partition table using the followin
 sudo mkswap /[swap_path]
 sudo swapon /[swap_path]
 How to see the cpu info in linux?
-
+	lscpu
 
 see here for sre questions:
 https://www.ambitionbox.com/interviews/signzy-technologies-interview-questions/site-reliability-engineer
