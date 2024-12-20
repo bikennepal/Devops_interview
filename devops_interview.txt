@@ -7,6 +7,13 @@ SRE Interview questions:
 What happens when you type in ‘www.cnn.com’ in your browser?
 
 Steps: url to study for quick refresh: https://medium.com/@tech_18484/what-happens-when-you-type-a-url-into-your-browser-38ad7b100f0c
+	steps: You enter a URL in your browser and press Enter.
+The browser searches for the IP address associated with the domain.
+The browser establishes a TCP connection with the server.
+The browser sends an HTTP request to the server.
+The server processes the request and generates a response.
+The browser renders the content received from the server.
+
 https://github.com/mxssl/sre-interview-prep-guide
 Linux Interview questions
 Where does dns cache located in linux?
