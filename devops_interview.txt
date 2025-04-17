@@ -1,282 +1,22 @@
+The OSI model layer note:
+All people seems To Note the(De) people.
+
 Let's prepare for the devops interview now
-
-===============================
-SRE Interview questions:
-
-
-What happens when you type in ‘www.cnn.com’ in your browser?
-
-Steps: url to study for quick refresh: https://medium.com/@tech_18484/what-happens-when-you-type-a-url-into-your-browser-38ad7b100f0c
-	steps: You enter a URL in your browser and press Enter.
-The browser searches for the IP address associated with the domain.
-The browser establishes a TCP connection with the server.
-The browser sends an HTTP request to the server.
-The server processes the request and generates a response.
-The browser renders the content received from the server.
-
-https://github.com/mxssl/sre-interview-prep-guide
-Linux Interview questions
-Where does dns cache located in linux?
-ans: /var/cache/nsdc/hosts
-
-**swap memory in linux, projects worked on , explain CI/CD , docker, kubernetes
-* What is a swap memory and how can you create swap memory and see swap memory?
-Ans: Swap space in Linux is an extension of physical RAM, offering virtual memory that helps maintain system stability and performance
-swapon -s to see swap space 
-free -m this gives more detail
-
-How to Increase/Decrease Swap Space
-swapon --show 
-Before resizing, disable the swap space with the following syntax:
-	sudo swapoff -v /[swap_path]
-After resizing the swap partition, update the partition table using the following syntax:
-sudo mkswap /[swap_path]
-sudo swapon /[swap_path]
-How to see the cpu info in linux?
-	lscpu
-
-see here for sre questions:
-https://www.ambitionbox.com/interviews/signzy-technologies-interview-questions/site-reliability-engineer
-
-What is the difference between SLA,SLI and SLO?
-=> sla:An agreement between a company and its customers that defines measurable metrics like uptime, responsiveness, and responsibilities. SLAs are used externally to define the company's service. If the SLA is not met, the company may face a penalty, such as a partial refund or additional subscription time.
-slo:An agreement within an SLA that defines a specific metric, such as uptime or response time. SLOs are individual promises made to customers and are measured internally to determine if the SLA is being met
-
-SLI:A specific metric that measures some aspect of the level of service to customers. SLIs are a sub-section of SLOs and are key metrics used to determine if the SLO is being met. The value of the SLI must always meet or exceed the value determined by the SLO.
-
-1. your Ec2 instance is runnning out of disk space what action you will take?
-Ans: check the logs and rotate using roatare command in linux check the cpu utulization and memeory as well.
-zip the logs using tar -czvf message.tar.zip files.
-
-2. what is a bastion host or a gateway? and what role does it play?
-ans:bastion server is a server which act as a door to the internal network and it provide an extra layer of security as well through which can manage all the user at one place
-
-3.multiple ec2 instance are getting terminated in ASG and this is causing issue in application downtime. but there is no issue in ec2 pricing and all quota looks good.
-Ans:there can be disk space issue,memory,process and there can not any issue with ASG and amazon service.
-
-4.create a linux script that will automitically push certain logs to s3 bucket and also script should run at particular time.
-ans:
-
-5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
-ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
-6. how can we list all the users in a group in linux.
-Ans:we can use group groupname. or getent group groupname
-7.To create a group in linux
-Ans: sudo groupadd biken
-8.To add user in a group
-Ans: sudo usermod -aG group username
-
-
-7.what is AWK command in linux? and how to use it?
-ans: this is a powerrful textprocessing command in linux.
-	example:
-			$cat > employee.txt 
-						ajay manager account 45000
-						sunil clerk account 25000
-						varun manager sales 50000
-						amit manager account 47000
-						tarun peon sales 15000
-						deepak clerk sales 23000
-						sunil peon sales 13000
-						satvik director purchase 80000 
-awk '/manager/ {print}' employee.txt 
-url to know more: https://www.geeksforgeeks.org/awk-command-unixlinux-examples/
-
-
-
-8.how to connect to ec2 instance if we lost the key?
-Ans: https://stackoverflow.com/questions/49749794/recovering-lost-aws-ec2-key-pairs see here the multiple ways to do so
-9.What are the types of EBS we have?
-Ans: general purpose gp3,gp2,Iops and magnetic types ebs we have.
-10. Can we use one ebs volume by multiple instance?
-ans: can shared instances in the same AZ
-10. What is the max iops we can get in aws ebs?
-Ans: For standard volumes, the maximum size is 16 TiB. For Provisioned IOPS (IO1) and General Purpose (GP2) volumes, the maximum size is 64 TiB.
-11.What is the difference between values and snapshots?
-Ans: Value is the data of ec2 instance and snapshot is the the backup of the value. and it is layerby layer backup.
-
-12. Can we attach snapshots with ec2 instance? if yes how and if no why?
-Ans: You can't use snapshots to launch a new instance, but you can use them to replace volumes on an existing instance.
-13.What is the difference between ebs efs and s3 storage?
-Ans: https://www.google.com/search?q=What+is+the+difference+between+ebs+efs+and+s3+storage&rlz=1C1GCEA_enIN902IN902&oq=What+is+the+difference+between+ebs+efs+and+s3+storage&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigAdIBBzkxOGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8
-** Can we launch an instance using efs in aws?
-Ans: Yes, you can use Amazon Elastic File System (EFS) to launch an Amazon EC2 instance by creating an EFS file system and mounting it to the instance during launch using the Amazon EFS Quick Create feature. EFS is a serverless, shared file system that can be mounted to multiple EC2 instances and is designed to be a durable and highly available file storage solution
-14.Give me some example where vertical scaling is apporopriate then horizantal scaling.
-Ans: When you have a small, predictable workload, When you need to quickly improve performance:
-15.Name three aws services where we can run kubernetes.
-Ans: EKS,ECS and EKS anywere.
-16.What are cloud computing deployment models?
-Ans: Cloud computing deployment models are the different ways that cloud computing resources can be delivered to and used by customers. There are four main deployment models:
-	public,private,cumminity,hybrid
-17.What is a shared responsible model?
-Ans:In cloud computing, a shared responsibility model is a security framework that outlines the security responsibilities of both the cloud provider and the cloud customer. The model is based on the principle that both parties have shared responsibility for securing the cloud environment.
-
-18.
-
 =====================================
-Git need to write all the commands
-
-1. how do you pass message when you make a git commit
-ans: we can use git commit -m "updated file"
-
-2.how to change new machine type and check who made last change to that particular git code. and know about blame in git.
-ans: git blame biken.txt
-
-3.What is a branch protection in github?
-ans:protecting a branch from direct commit by reviewing the change made to other branch and this is not enabled by default in github.
-
 ==========================================
 Docker:
-1.how to check logs in docker and filter only last 200 lines
-Ans:docker logs --tail 200 container-name/id
-2.will the docker logs be lost if contianer is restarted or stopped.
-Ans: Logs will be lost if container is stopped or restarted but we won't find logs if it got deleted.
-To persist Docker logs, you can use a logging driver such as json-file or syslog. These drivers will store the logs in a location on the host machine, which will persist even after the container is stopped or restarted.
-You can also use a third-party logging service such as Splunk or Elasticsearch to store Docker logs. These services will collect and store the logs from all of your containers, and provide you with a centralized view of your logs.
-3.You encounter a docker image of size 2.7gb will this be a cause of concern and how you will tackle this?
-Ans:Bigger images will result in longer built time
-    docker image download or API limit error
-    application will also be bulkier or heavy
-       
 Solution:
     smaller image base like alpine images
     Multi-stage Builds Feature when building docker image
     install only required packages or bianries
-4.What is the difference between docker image and docker layer?
-Ans:docker image a packaged application or a bundle of packaged layers where it contains all the code and dependencies to run an application.
 
-5.Explain CMD and entrypoint in Docker and are these two same?
-ans:CMD Sets default parameters that can be overridden from the Docker command line interface (CLI) while running a docker container while 
-Sets default parameters that cannot be overridden while executing Docker containers with CLI parameters.
-
-FROM nginx:latest
-
-ENTRYPOINT ["echo", "Biken"]
-
-The above entrypoint cannot be overriden and if we try to override it won't work
-
-docker build -t hell-biken
-docker run hello-biken biken
-Biken biken
-
-
-
-
-FROM ubuntu
-ENTRYPOINT ["echo", "Hello"]
-CMD ["Abhinav"]
-if we don't give any name in cmd it will print hello only
-FROM ubuntu
-ENTRYPOINT ["echo", "Hello World"]
-
-FROM ubuntu
-CMD ["echo", "Hello World"]
-
-
-What are the different components of Docker?
-Docker clinet, docker-daemon, docker-registry,docker-image,docker-swarm.
-
-What are Docker volumes?
-a volume is a persistent storage location that exists outside of the container. Volumes are useful for storing data that needs to persist even if the container is stopped or removed.
-
-VOLUME /var/log 
-VOLUME /my/data 
-
-or we can specify volume while running a docker container
-docker run -v /host/log:/var/log myimage  this will be managed by docker-engine itself and this type is of Volume.
-
-docker volume create my-volume
-docker volume create --name shared-data
-we must mount the created volume inside the container
-docker run -it --name my-container -v my-volume:/data ubuntu:latest
-
-* can we use same volume with multiple containers
-Ans: There are two ways to share a single volume with multiple Docker containers:
-	Using the volumes-from flag: This flag allows you to mount the volumes of one container to another container. For example, to mount the volumes of the container named container1 to the container named container2, you would run the following command:
-	docker run -it --name container2 -v my-volume:/data ubuntu
-
-
-What is the difference between docker and virtual machine?
-Ans: Docker is a light weight mean to host application and VM is a whole Os which is heavy and requires more cpu,Ram to function properly
-How can you enable a container to start a docker container when host machine is restarted?
-Ans: yeah we can enable to start container when host restared by updating restart policy.
-		docker update --restar=always container_id
-	To create a systemd unit file for a docker container, you would create a file with the .service extension in the /etc/systemd/system directory. The file would contain the following information:
-	[Unit]
-Description=My Docker Container
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/docker start my-container
-ExecStop=/usr/bin/docker stop my-container
-
-[Install]
-WantedBy=multi-user.target
-
-sudo systemctl enable my-container.service
-sudo systemctl start my-container.service
-
-What is docker compose?
-Ans: Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.
- example: 
-	
-
- What are different types of Docker network how they are different form one other?
-docker run --network my-network my-image // This is how we can run contaienr in different network
- Ans: Bridge network, overlay and vlan network:
-	Overlay: Overlay is a network wherein it enables communcation between the containers hosted in different hosts.
-	Bridge: Beidge is a netwrok which enables communication amongs the containers in same host.
-	vlan: Macvlan networks allow containers to connect directly to the physical host network. This makes them ideal for applications that need to be able to access the physical host network.
-	
-
- What is a docker image vs docker container?
- Ans: Docker image basically is a package of code where it is mean to run a container later.
-
- What do you understand by docker volume and why they are used for data persistent?
- Ans: dokcer volume are used to persist data when container are restarted or stopped
-
- HOw do you torubleshoot container no starting?
- Ans: Docker logs will be the first point, docker inspect,docker events, 
-	docker logs container_id or container_name, docker inspect --type=container my_container 
-
- how to secure docker contianers?
- Ans: The best wasy to protect containers are we should never run docker as root user and scan the images and use ssl singed dockr images.
+ 
 
  Docker multi stage built creation explanation.
  Ans: 
 
  HOw do you deploy canary deployment using docker?
  Ans:
-
- What command can you run to export a docker image as an archive?
- Ans: docker export red_panda > latest.tar
-	docker export --output="latest.tar" red_panda
-	docker export red_panda > latest.tar
-
- how to mount volume in docker?
- Ans: we can mount volumes in docker at the runtime 
- Basically, there are 3 types of mounts which you can use in your Docker container viz. Volumes, Bind mount and tmpfs mounts.
-
-	Volumes:
-	bind Mount:
-	Tmpfs: 
-
-How do you exec a command inside a container?
- Ans: docker exec container_id ls
-
- How can you create a docker image from a running container?
- Ans: yes we can create image from a running container.
-	now let's modify the previous docker conatiner running and update a new indx.html file.
-index.html is the file that in the current path.
-
-docker cp index.html image_name:/usr/share/nginx/index.html
-
-docker commit image_name    or we can also give here itself  "docker commit image_name new_image_name 
-
-docker tag image_id new_image_name
-
-
 ## Make your own docker app of django and deploy using docker.
 Know how Django app works and it's struture.
 
@@ -304,81 +44,6 @@ difference between bridge overlay and host network in docker.
 Let's prepare for the devops interview now
 
 ===============================
-Linux Interview questions
-
-1. your Ec2 instance is runnning out of disk space what action you will take?
-Ans: check the logs and rotate using roatare command in linux check the cpu utulization and memeory as well.
-zip the logs using tar -czvf message.tar.zip files.
-
-2. what is a bastion host or a gateway? and what role does it play?
-ans:bastion server is a server which act as a door to the internal network and it provide an extra layer of security as well through which can manage all the user at one place
-
-3.multiple ec2 instance are getting terminated in ASG and this is causing issue in application downtime. but there is no issue in ec2 pricing and all quota looks good.
-Ans:there can be disk space issue,memory,process and there can not any issue with ASG and amazon service.
-
-4.create a linux script that will automitically push certain logs to s3 bucket and also script should run at particular time.
-ans:
-
-5.Why is logging important? what is centralized logging and what tool helps us to achive the same.
-ans: we can have logs in elastic search, s3 bucket, cloudwatch etc.
-6.What is the difference between sepcial permission and access control list(ACL)?
-Ans: special permission is like SUID,GUID and Sticky bit:
-soS, 4,2,1 t or T for sticky bit.
-ACL is more like a redefine or fine-granied level of permission access for a file or a directory and this is applicabel at user or group level and to make this applicable we need to have ACL enable at partition level.
-like getfacl and setfacl.
-7.what is the difference between s and S in special permission?
-ans: s(lowercase) when s appears in the execute permission field. it indicates that the set user ID(suid) or set group(SGID) permission is set. The SUID permission allows a user to execute a file with the permissions of the files owner.likewise the SGID permission allows a user to exeucte a file witht he permisison of the files' group.
-
-example: rwsr-xr-x indicates that the SUID bit is set for the owner.
-
-S(uppercase): when 'S' appears in the execute permission filed. it indicates that the corresponding execute permission is not set and the SUID or SGID permission is not active.
-example rw-rw-r would be rwSr-Sr-- if the SUID bit is set for the owner but execute permission is not set.
-8.What is the difference between t and T?
-Ans: When t appears in the excute permission field for others on a directory. it indicates that the sticky bit is set. The sticky bit on directory is a permission that restricts the deletion of files within the directory to only the file's owner, the directorys owner or the root user.
-example: drwxr-xr indicates that the sticky bit is set for others.
-same as capital S set but not given execute permission.
-9.what is suid ?can you give me an example? how to set suid?
-ans:Change user UID on execution. if SETUID bit is set when the file will be executed by a normal user, the process will have same rights as the owner of the file being executed. BAsically the owner of the command will be root user but still normal user can execute it.
-example: ls -l/bin/ping 
-		chmod u-s /bin/ping 
-		chmod 4766 /bin/ping 
-
-10.what is sgid ?can you give me an example? how to set sgid?
-ans: SGID -- Set the group ID used on executable files to allow the file to be run as if logged into group (like suid but used file grp permission)
-ans: mkdir /amazon
-	chgrp biken amazon
-	ls -ld amazon
-	chmod 2766 amazon
-	cd /amazon
-	touch vpc
-	ls -l 
-
-	example: chgrp lambda amazon // changing the group of the dir amazon
-			chmod 2766 amazon // setting the sgid for the dir amazon
-			and if you create any file under amazon it will take group as lambda.
-11. what is stickybit ?can you give me an example? how to set stickybit?
-Ans: Sticky bit is a special file or directory permission and only the owner or root user can delete that file or directory.
-	Example: mkdir compute
-				chmod 1766 compute
-				touch ec2.txt
-				ls -ld compute
-				su - splunk 
-				cd compute
-				rem ec2.txt
-
-12.How to enable ACL on a partition?
-Ans: mount -o acl /dev/sdb1 /youtube
-		getfacl to check the acl is applied in a directory or not
-
-13.how to apply and Acl on a file or a directory?
-Ans: setfacl option argument file or dir
-		setfacl -m u:manish:rx /dir
-
-
-
-
-
-
 
 =====================================
 Git need to write all the commands
@@ -397,61 +62,8 @@ Ans: A branch is a new or a seprate repositort under the main branch which sepra
 Ans:TBD with example
 6.
 
-
-==========================================
-Docker:
-1.how to check logs in docker and filter only last 200 lines
-Ans:docker logs --tail 200 container-name/id
-2.will the docker logs be lost if contianer is restarted or stopped.
-Ans: Logs will be available if container is stopped or restarted but we won't find logs if it got deleted
-3.you encounter a docker iamge of size 2.7gb will this be a cause of concern and how you will tackle this?
-Ans:Bigger images will result in longer built time
-    docker image download or API limit error
-    application will also be bulkier or heavy
-       
-Solution:
-    smaller image base like alpine images
-    Multi-stage Builds Feature when building docker image
-    install only required packages or bianries
-4.What is the difference between docker image and docker layer?
-Ans:docker image a packaged application or a bundle of packaged layers where it contains all the code and dependencies to run an application.
-
-5.Explain CMD and entrypoint in Docker and are these two same?
-ans:CMD Sets default parameters that can be overridden from the Docker command line interface (CLI) while running a docker container while 
-Sets default parameters that cannot be overridden while executing Docker containers with CLI parameters.
-
-FROM nginx:latest
-
-ENTRYPOINT ["nginx"]
-
-
-FROM ubuntu
-ENTRYPOINT ["echo", "Hello"]
-CMD ["Abhinav"]
-	here while running the docker conatiner we can override the cmd argument
-		docker run -it image biken
-FROM ubuntu
-ENTRYPOINT ["echo", "Hello World"]
-
-FROM ubuntu
-CMD ["echo", "Hello World"]
-
-
-What are the different components of Docker?
-Docker clinet, docker-daemon, docker-registry,docker-image,docker-swarm.
-
-What are Docker volumes?
-a volume is a persistent storage location that exists outside of the container. Volumes are useful for storing data that needs to persist even if the container is stopped or removed.
-
-VOLUME /var/log 
-VOLUME /my/data 
-
-or we can specify volume while running a docker container
-docker run -v /host/log:/var/log myimage 
-
-
-
 ======================================================
+Kubernetes Interview 
 * Can you please explain kubernetes architecture?
 Ans: Kubernetes, or K8s, is an open-source container orchestration platform that uses a master-worker model to manage containerized applications. The master node, also known as the control plane, manages the worker nodes, which can be physical servers or virtual machines. Containers are deployed and executed in the worker nodes, which are encapsulated in pods
 	Monitors the cluster
@@ -472,6 +84,8 @@ A network proxy that runs on each node to control traffic routing and network co
 
 Kube-scheduler
 Records resource utilization statistics for each computing node, evaluates the cluster's health, and decides where and whether to deploy new containers.
+
+
 
 
 ETCD: 
@@ -495,27 +109,6 @@ helm
 1.
 
 ==========================================================
-AWS-interview Questions.
-
-Questions realted to ec2 that might be possible to be asked in interview.
-1.What are the type of virtulization do we have on AWS Platform?
-Ans:There are two types of Virtualization hvm and paravirtual and both have their own advantage and disadvantage. in reated to disk I/O or network realted operations.
-
-2.What are the types of root devices?
-Ans EBS, Instance store and what is the defference in these two: instance storage is an attage storage and this is not persistent if any thing happens to the device and EBS is a remote storage SAN or NAS and this is persistent storage
-
-3.What are the type of hypervisor in AWS?
-ans:xen and nitro and nitro is faster hypervisor. and why.
-
-4.how can we recover the lost ec2 key?
-ans:
-
-5. how to check share AMIs?
-ans:we have public private and owned by someone.
-
-6.What is T2/T3 unlimited options?
-ans:T2 and T3 are the credit that has been prealocated to user to use.
-
 ======================================
 Amazon VPC:
 1.list The componenets of use to build vpc?
@@ -674,14 +267,6 @@ Terraform State Commands: terraform state file are not mean to be edited by vi t
 list,mv,show,pull,rm.
 
 terraform state show aws_instance.fiannce.
-
-
-
-
-
-
-
-
 2.how can you change or modify the exisiting infrastructe.
 Ans:we can use import command.
 
@@ -742,6 +327,19 @@ service networking:kube-proxy implements service networking in a cluster and it 
 cluster DNS:kubernetes create subdoiman for svc and keep an entry of the service but it does not keep record of pod but we can make it that as well.
 coredns:
 Ingress: In Kubernetes, an Ingress is an object that allows access to Kubernetes services from outside the Kubernetes cluster.
+
+
+You have an application deployed on Kubernetes that is experiencing increased traffic. How would you scale the application to handle the increased load?
+
+
+
+Your team is planning a high-availability
+Kubernetes cluster. Describe the Process and
+Considerations for Designing a High-Availability
+Kubernetes Cluster.
+
+
+
 ===========================================================================================================
 What is the difference between Docker and Kubernetes?
 Ans: Docker is a container runtime engine whereas kuberntes is an orcherstaiont open-source platform where it usesruntime engine to manage it's enviornment.
@@ -758,58 +356,6 @@ Ans: namespace in kubs is logically isolating the resources in their own space a
 
 6. what is the role of kube-proxy?
 the role it is to create networking servcie in a kuberetnts cluster.
-
-========================================
-Linux
-
-how will you change default user id value in linux?
-ans: useradd biken -- to add user in linu, and to change the id range we have to edit the file /etc/login.defs
-
-2.root# rm -rf /tmp/test gives error operation not permitted. Reason?
-ans: touch /tmp/test
-chatter +i /tmp/test---this character attrbute ensure that file or folder would not be deleted even by the root user.
-
-3./etc/hosts/ which RPM is responsible for creating this file.
-ans:we check using rpm -qf /etc/hosts  files which are owned by packages can be cheked using above command.
-
-4.what is the difference betwwen RPM and YUM?
-ans:both are use to manage software in centos/redhat. 
-to check the depindency we can use rpm -qPR hpptd.6.6.7.rpm
-rmp -ivh httpd.1.23.rpm
-
-5. what is the difference between hardlink and softlink.
-Ans:ln /tmp/test /etc/biken
-ll -i /etc/biken ---- the inode value remains the same in the case of harlink.
-ln -s /tmp/test /mnt/biken
-ll -i /mnt/biken
-rm /tmp/test  in this case link will be broken.
-
-6.what is a sticky bit in linux?
-Ans:sticky bit is implemtmed to prevent deletion of any folder and this is only applicable to folder level not in file level.
-chmod +t dir  or chmod 1777 dir
-
-7.how you will check open ports in linux server?
-ans:netstat -tunlp 
-
-8.how you will check open ports in remote server without login.
-Ans: we can use command line utility to check the remote open port. nmap -A server-name/hostip and nmap is use to scan the open ports as well
-sudo nmap -sT -p- 10.10.8.8  This is to scan tcp port and for udp sudo nmap -sU -p- 10.10.8.8
-
-9.your site is throwing 500 error how you will start troubleshooting?
-ans:datbase is not responding.
-
-10.how you will start troubleshooting if the site is down?
-Ans:depending on the erro code we have to start.
-
-11.how will you create a disk space if it is 100% occupied?
-ans:we can use df -HT and go inside the directory and use du -sh *.
-
-12.what is sar command in linux and do you and what is the package of sar?
-ans;sar command can be used to see the info of the systme and it's stastical data.
-we have to install utility/package to see it  yum sysstat. and after that restrt and check.
-sar -q.
-
-The sar command is a standard UNIX command used to gather statistical data about the system. With its numerous options, the sar command provides queuing, paging, TTY, and many other statistics. The sar -d option generates real-time disk I/O statistics.
 
 =============================================================================================
 git interview questions:
@@ -830,168 +376,6 @@ git cherry-pick: cherry-pick can be use when there is one or 2 commit but this i
 git merge branchname / git merge mergeExample  when multiple people making a change in the same file in different it will throigh conflict as it will ask which code to commit.
 git rebase branchname==> this will list the commit id at the top.
 know more on git commands 
-
-
-
-================================================================
-sag interview role  questions:
-txt files in dir.
-
-#!/bin/bash
-
-cd biken
-aws s3 cp .  s3://bucketname\ --recursive
-=============================
-useradd admin
-
-git clone giturl.
-
-git checkout giturl
-
-add a text file.
-
-git add textfile
-git commit -m "add textfile"
-
-git checkout giturl
-
-git cherry-pickt id
-
-=================================
-how do you see logs for deployment ###
-kubectl logs deployment biken 
-
-can we add multiple load balancer
-
-==========================================
-shell scripting part1: done with basic
-shell scripting part2:
-df -ht
-free-- to check memory info
-nproc
-
-let's write a shell script to get the node/cpu info of a machine.
-
-#!/bin/bash
-
-###############################
-#Author: Biken
-#Date: 08/14/2023
-# This script output the health of a node.
-set -x #debug mode
-df -h
-free -g
-nproc
-
-to get the list of running process-> ps -ef, ps -ef | grep "amazon", this is to get the list of process
-
-date | echo "This is today date"
-this does not give the time because this date command belongs to stdin not to stdout or stderr
-
-awk command: know little bit about it and the usecase.
-ps -ef | grep amazon | awk -F "" '${print $2}'
-
-set -e: exit the script when there is an error.
-set-o pipefail: when pipe command fail then we can error out as well.
-
-curl command: is use to retrieve the info fromthe internet example of getting the log file.
-curl https:\\biken.com | grep error.
-
-wget actually downloads the files. whereas curl command will look for and error
-find /etc -name biken.txt // this is the format of using find command
-
-let's write a simple if ifelse for loop in linux.
-
-a=10
-b=20
-
-if [ $a gt $b ]
-then
-	echo "bbbbbbb"
-else
-	echo "bbbbbbbb"
-fi
-
-for loop
-for i in {1...200}; do echo $1; done
-
-trap command:know more on this
-===============================================
-shell scripting interview questions.
-write a simple shell script to list all the processes
-#!/bin/bash
-
-ps -ef | awk -F " " '{print $2}'
-
-write a shell script to print only error log from remote
-
-curl google.com | grep error
-
-for i in {1...100}; do
-if ([`expr $i % 3` == 0 ] || [`expr $i % 5` == 0 ]) && [`expr $i % 15` !=0 ];
-then
-	echo $i
-fi;
-done
-
-write a shell script to print "S" in missisipi
-
-x=biken
-
-grep -o "b" <<<"$x" | wc -l
-
-what is crontab in linux and give one example?
-
-how do you open a file in read only mode?
-vi -r biken.txt
-
-what is the dfference between soft and hard link?
-
-what is the difference between break and continue in a loop?
-
-what is the method you use to sort files in linux?
-sort command
-
-how you will manage huge logs in linux when you have multiple apps?
-logrotate
-
-Write a script to report the usage of AWS project?
-configure aws account with awscli using aws configure
-if you want to check aws cli command realted go to aws reference page.
-
-#!/bin/bash
-
-##############################
-#Author: Biken
-#Date:08-15th-2023  8730830223
-#Version: V1
-#This script will send the report to a user
-#################################
-#AWS S3
-#Aws ec2
-#aws lambda
-#aws Iam
-
-###############################
-integrate with a cron tab the same above script.
-================================================
-Github API integration using shell script.
-go through it and try to do it.
-
-================================================
-Ultimate shell script project used by Netflix Live Demo AWS Real-time project.
-================================================
-Permision:
-who assign default permission to files and directories in linux?
-What is Umask in Linux? Umask (short for user file-creation mode mask) is used by UNIX-based systems to set default permissions for newly created files and directories
-
-
-
-
-
-
-
-
 
 =================================================
 Route 53:
@@ -1074,31 +458,6 @@ note: the default execition time for a lambda is 3s
 step4: do it completely the demo
 ================================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-shell scripting basic devops questions
 ==================================================================================
 
 Understanding the jenkins pipeline:
@@ -1203,22 +562,6 @@ CMD ['node', 'server.js']
 * * * * * sh /path/to/script.sh
 minutes, hours, Dayof month, Month, Weekday.
 
-=========================================================================================
-
-linux reboot process step by step:
-
-1. Step1: Power On and POST: When you power on your machine, it performs a Power-On Self-Test (POST) to ensure all hardware necessary for the system to operate is functioning correctly.
-2.BIOS/UEFI: The BIOS/UEFI (Basic Input/Output System or Unified Extensible Firmware Interface) is then loaded. This low-level software checks the hardware and then scans the system's storage devices for bootable media.
-3.MBR and GRUB: Once a bootable device (like your hard drive) is found, it reads the first 512 bytes known as the Master Boot Record (MBR) or, in newer systems, it uses the GUID Partition Table (GPT). The MBR/GPT contains the bootloader (often GRUB in Linux systems), which is then executed.
-4.Kernel Loading: The GRUB menu allows you to select an operating system (in a dual boot scenario) or different kernel versions. GRUB/GRUB2 then loads the selected Linux kernel into memory.
-5.Initramfs: The bootloader also loads a special filesystem called the initramfs (Initial RAM FileSystem) into memory alongside the kernel. This temporary root filesystem includes the drivers and tools needed to mount the actual root filesystem.
-6.Kernel Initialization: Once loaded, the kernel decompresses and initializes itself, sets up system functions (like hardware interfaces, memory management, process control, etc.), and then extracts the initramfs archive in memory.
-7.Switch Root: The kernel then executes the /init program located in the initramfs, which continues the boot process, typically by locating and mounting the actual root filesystem. The kernel then 'switches' from the initramfs to the newly mounted root filesystem.
-8.Init and Runlevel/Targets: After the root filesystem is mounted, the kernel starts the first process init (or systemd in most modern systems). This process continues the boot process by moving the system into a specific runlevel, which dictates what processes or services to start.
-9.User-Space: Init or systemd starts the necessary user-space processes according to the chosen runlevel.
-10.Login: Finally, a login prompt or graphical user interface (GUI) appears, and the system is ready for user interaction.
-
-
 ====================================
 jenkins zero to hero: keys points.
 Jenkins interview questions:
@@ -1244,113 +587,23 @@ name=$(echo $container | aws '{print $1}')
 
 
 ================================================
-#!/bin/bash
-
-# Get the list of all running containers
-CONTAINERS=$(docker ps -a)
-
-# Loop through the list of containers
-for CONTAINER in $CONTAINERS; do
-
-  # Get the name of the container
-  NAME=$(echo $CONTAINER | awk '{print $1}')
-
-  # Get the status of the container
-  STATUS=$(docker inspect --format='{{.State.Running}}' $CONTAINER)
-
-  # Check if the container is running
-  if [ "$STATUS" = "true" ]; then
-    echo "$NAME is running"
-  else
-    echo "$NAME is not running"
-  fi
-
-done
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+======================================================
+1. Write a Terraform code to create multiple S3 buckets
+2. How you managed statefile
+3. So how are you managing the conflict? State file conflicts
+4. what you did with Jenkins?
+5. How are you integrating the SonarQube with the Jenkins server?
+6. How were you authenticating Jenkins to push docker image to registery?
+7. Have you worked on the Kubernetes?So what deployment strategy are you following?
+8. So how are you implementing the blue green deployment?
+9. Do you know what is HPA?
+10. suppose you deploy one application okay and you found some issue, you wanted to roll back using the kubernetes how you roll back to the particular version, what is the command?
+11. What is the stateful set in the Kubernetes?
+12. Have you worked on the AWS, right?
+13. So how many types of policy, IAM policy are there? IAM policies?
+14. So what is the difference between the S3 bucket policies and acls?
+15. what is the dynamic auto scaling?
+16. What is the difference between Security groups and NACL?
 
 ======================================================
 Kubernetes
@@ -1434,31 +687,8 @@ Route53:
 do some projects refering aws route53 documentation.
 
 ======================================================================
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
 =========================================================================
 Load balancer interview qiestions:
-
-
-
-
-
 
 Questions realted to ec2 that might be possible to be asked in interview.
 1.What are the type of virtulization do we have on AWS Platform?
@@ -1692,6 +922,18 @@ kubernetes interview questions.
 
 Top kubernetes interview by top company.
 
+While troubleshooting a networking issue in the
+cluster, you noticed kube-proxy in the logs. What
+is the role of kube-proxy in Cluster?
+
+The primary role of kube-proxy in Kubernetes is to act as a network proxy that runs on each node in the cluster, responsible for managing network rules to enable communication between services and pods by mapping service IP addresses to the underlying pod IPs, essentially facilitating traffic routing between them based on Kubernetes service definitions
+
+Your team is planning a high-availability
+Kubernetes cluster. Describe the Process and
+Considerations for Designing a High-Availability
+Kubernetes Cluster.
+
+
 What is mean by ingress in kubernetes.
 => By Ingress in kubernetes it is an API object wherein we can use to define routing policy. where an external user can access pod in a cluster.
 
@@ -1747,6 +989,20 @@ ll -i /etc/biken ---- the inode value remains the same in the case of harlink.
 ln -s /tmp/test /mnt/biken
 ll -i /mnt/biken
 rm /tmp/test  in this case link will be broken.
+
+
+i want to zip logs of more then 30 days how can i do it?
+    find /path/to/logs -type f -mtime +30 | zip -r logs_older_than_30days.zip -
+
+how can we set a user to never expire?
+we can ise ch -m 9999 username 
+
+what is the difference between fdisk lsblk and parted -l  ?
+All are same and display partitation and block
+
+
+if i have to update the partition table information which command can be used?
+fdisk and p option 
 
 6.what is a sticky bit in linux?
 Ans:sticky bit is implemtmed to prevent deletion of any folder and this is only applicable to folder level not in file level.
@@ -1953,14 +1209,6 @@ Permision:
 who assign default permission to files and directories in linux?
 What is Umask in Linux? Umask (short for user file-creation mode mask) is used by UNIX-based systems to set default permissions for newly created files and directories
 
-
-
-
-
-
-
-
-
 =================================================
 Route 53:
 What is route 53?
@@ -2040,33 +1288,6 @@ step3:create lambda function
 note: the default execition time for a lambda is 3s
 step4: do it completely the demo
 ================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-shell scripting basic devops questions
-==================================================================================
 
 Understanding the jenkins pipeline:
 go to this github repor and do the stuff: https://github.com/devopsjourney1/jenkins-101/blob/master/Jenkinsfile
@@ -2202,49 +1423,7 @@ NLB: network load balancer is at lyer4 and it does some sort of data packets and
 
 GWLB: this is mainly used in firewall,vpn and some other virtual appliances(vpn or any other type of appliances)
 ======================================
-write a simple shell script to monitor docker containers.
-#!/bin/bash
 
-
-containers=$(docker ps -a)
- 
-for continaer in $containers; do
-name=$(echo $container | aws '{print $1}')
-
-
-================================================
-#!/bin/bash
-
-# Get the list of all running containers
-CONTAINERS=$(docker ps -a)
-
-# Loop through the list of containers
-for CONTAINER in $CONTAINERS; do
-
-  # Get the name of the container
-  NAME=$(echo $CONTAINER | awk '{print $1}')
-
-  # Get the status of the container
-  STATUS=$(docker inspect --format='{{.State.Running}}' $CONTAINER)
-
-  # Check if the container is running
-  if [ "$STATUS" = "true" ]; then
-    echo "$NAME is running"
-  else
-    echo "$NAME is not running"
-  fi
-
-done
-=================================================
-I have 5 log files under different directores . say for eg abc under /home/dir1 , xyz under home/dir2 . is there a script that i can run from say /home that searchers all these files for string or combination of strings and write to a file
-
-eg search file by timestamp|keyword
-o/p in a file
-
-for i in /dir1 /dir2 /dir3;
-do
-	grep "biken" "$i" /file_name >> file.output
-done
 
 ========================================================
 write script to display logs of GET response and response time and code from a log file?
@@ -2263,83 +1442,122 @@ grep 'GET' filename | awk '{print $4, $9, $NF}' | printf '%-20s %-10s %-10s'
 
 
 ================================================================
-
-signzy Interview questions:
-How to check outbouned ports in linux?
-Ans: sudo netstat -tunpl
-	ss command
-How to scale node a port in kubernetes?
-Ans: we can use HPA to scale port and node
-What is three archicture pls explain?
-Ans:
-Types of network service in kubernetes?
-Ans
-how to kill process in linux?
-Ans: kill -9 processid
-How to scan open ports in linux?
-Ans: Use the command sudo nmap -n -PN -sT -sU -p- localhost
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+===========================================================
+pipeline {
+    agent any  // Run on any available agent (Jenkins node)
+    
+    environment {
+        // Define environment variables
+        PROJECT_NAME = "my-application"
+        VERSION = "1.0.0"
+        DOCKER_IMAGE = "my-docker-registry/${PROJECT_NAME}:${VERSION}"
+        KUBE_NAMESPACE = "production"
+    }
+    
+    parameters {
+        // Pipeline parameters (configurable via Jenkins UI)
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'prod'], description: 'Target environment')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run test suite?')
+    }
+    
+    stages {
+        // Stage 1: Checkout source code from SCM
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/your-username/your-repo.git'
+            }
+        }
+        
+        // Stage 2: Build application
+        stage('Build') {
+            steps {
+                script {
+                    // Example for Maven project
+                    sh 'mvn clean package'
+                    
+                    // For Node.js projects:
+                    // sh 'npm install'
+                    // sh 'npm run build'
+                }
+            }
+        }
+        
+        // Stage 3: Run tests
+        stage('Test') {
+            when {
+                expression { params.RUN_TESTS }
+            }
+            steps {
+                script {
+                    // Unit tests
+                    sh 'mvn test'
+                    
+                    // Integration tests
+                    // sh 'mvn verify -P integration-tests'
+                }
+            }
+            post {
+                // Publish test reports
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+        }
+        
+        // Stage 4: Build and push Docker image
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.example.com', 'docker-credentials') {
+                        docker.build(DOCKER_IMAGE).push()
+                    }
+                }
+            }
+        }
+        
+        // Stage 5: Deploy to Kubernetes
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Update Kubernetes deployment manifest
+                    sh "sed -i 's|IMAGE_PLACEHOLDER|${DOCKER_IMAGE}|g' k8s/deployment.yaml"
+                    
+                    // Apply configuration
+                    withKubeConfig([credentialsId: 'k8s-cluster-credentials']) {
+                        sh "kubectl apply -f k8s/ -n ${KUBE_NAMESPACE}"
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        // Post-build actions
+        always {
+            // Clean workspace
+            cleanWs()
+            
+            // Send notifications
+            script {
+                currentBuild.result = currentBuild.result ?: 'SUCCESS'
+                emailext (
+                    subject: "Build ${currentBuild.result}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """Check console output at ${env.BUILD_URL}""",
+                    to: 'team@example.com'
+                )
+            }
+        }
+        
+        success {
+            slackSend channel: '#ci-cd',
+                     color: 'good',
+                     message: "Build Successful: ${env.JOB_NAME} - ${env.BUILD_URL}"
+        }
+        
+        failure {
+            slackSend channel: '#ci-cd',
+                     color: 'danger',
+                     message: "Build Failed: ${env.JOB_NAME} - ${env.BUILD_URL}"
+        }
+    }
